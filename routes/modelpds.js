@@ -13,7 +13,8 @@ var ObjectId = require('mongodb').ObjectID;
        // ModelID:req.body.ModelID,
        // ModelNum : req.body.ModelNum,
         ModelName : req.body.ModelName,
-        Status: req.body.Status
+        Status: req.body.Status,
+        BrandId: req.body.BrandId
 
     
      });
@@ -103,4 +104,17 @@ var ObjectId = require('mongodb').ObjectID;
     });
 });
 
+
+// search 
+
+router.post('/search',(req, res,next) =>{
+    Modelpd.find({BrandId: {$regex : ".*"+req.body.BrandId+".*"}}).then(data => {
+      res.send(data);
+  }).catch(err => {
+      res.status(500).send({
+          message: err.message || "Some error occurred while retrieving Customer."
+      });
+  });
+
+});
 module.exports = router;

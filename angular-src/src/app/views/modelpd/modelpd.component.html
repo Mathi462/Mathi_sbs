@@ -8,47 +8,35 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
+
+<!-- 
+          <mat-form-field style="width:100%">
+            <mat-select placeholder="Select Brand">
+              <mat-option > Already exists Brand  </mat-option>
+              <mat-option > New Brand  </mat-option>
+            </mat-select>
+          </mat-form-field> -->
+
+
           <form [formGroup]="form">
-            <!-- <div class="form-group" [ngClass]="displayFieldCss('ModelID')">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fa fa-vcard"></i></span>
-                    </div>
-                    <input type="text" formControlName=" " class="form-control"  placeholder="ModelID" formControlName="ModelID" tabindex="1">
-                    <app-field-error-display [displayError]="isFieldValid('ModelID')" errorMsg="Enter ModelID">
-                    </app-field-error-display>
-                  </div>
-                </div> -->
 
+            <mat-form-field style="width:100%">
+              <mat-select placeholder="Select Brand" formControlName="BrandId">
+                <mat-option *ngFor=" let brand of brand_name" [value]="brand._id">
+                  {{brand.BrandName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
 
-
-            <!-- <div class="form-group">
-                  <div class="input-group" [ngClass]="displayFieldCss('ModelNum')">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fa fa-book"></i></span>
-                    </div>
-                    <input type="text" formControlName="ModelNum" class="form-control" placeholder="MODEL NUM " formControlName="ModelNum" tabindex="1">
-                    <app-field-error-display [displayError]="isFieldValid('ModelNum')" errorMsg="Enter ModelNum ">
-                    </app-field-error-display>
-                  </div>
-                </div> -->
             <div class="form-group">
-              <!-- <div class="input-group" [ngClass]="displayFieldCss('ModelName')">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fa fa-book"></i></span>
-                    </div> -->
+
               <mat-form-field style="width:100%">
                 <input matInput type="text" placeholder="MODEL NAME " formControlName="ModelName">
               </mat-form-field>
-              <!-- <app-field-error-display [displayError]="isFieldValid('ModelName')" errorMsg="Enter ModelName ">
-                    </app-field-error-display>
-                  </div> -->
+
             </div>
             <div class="form-group">
-              <!-- <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fa fa-vcard"></i></span>
-                    </div> -->
+
               <mat-form-field style="width:100%">
                 <mat-select formControlName="Status" placeholder="STATUS">
                   <mat-option value=" " disabled selected>STATUS</mat-option>
@@ -63,9 +51,7 @@
                 </mat-select>
               </mat-form-field>
 
-              <!-- <app-field-error-display [displayError]="isFieldValid('Status')" errorMsg="SELECT STATUS">
-                    </app-field-error-display>
-                  </div> -->
+
             </div>
 
 
@@ -81,57 +67,8 @@
           </form>
         </mat-card-content>
       </mat-card>
-      <!-- <div class="card">
-        <div class="card-header">
-          <b></b>
-        </div>
-        <div class="card-body">
-         
-        </div>
-      </div> -->
+
     </div>
-
-    <!-- <div class="col-sm-8">
-      <div class="card">
-        <div class="card-header">
-          <i class="fa fa-align-justify"></i> Display Curriculum
-        </div>
-        <div class="card-body">
-          <table class="table table-sm">
-            <thead>
-              <tr>
-                <th>Curriculum ID</th>
-                <th>Curriculum Name</th>
-                <th>Edit</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let dis of display1">
-               
-                <td>{{dis.cid}}</td>
-                <td>{{dis.curriculumName}}</td>
-                <td>
-
-                  <button mat-icon-button (click)="openDialog(dis)" color="primary">
-                    <mat-icon>edit</mat-icon>
-                  </button>
-
-                </td>
-                <td>
-                  <button mat-icon-button color="warn" (click)="deleteCurriculum(dis._id)">
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="onPageChanged($event)">
-          </mat-paginator>
-        </div>
-      </div>
-    </div> -->
 
 
     <div class="col-sm-8">
@@ -146,20 +83,11 @@
           </mat-form-field>
         </mat-card-header>
         <mat-card-content>
-          <div >
+          <div>
             <table mat-table style="width: 100%;" [dataSource]="dataSource" matSort>
 
 
-              <!-- <ng-container matColumnDef="ModelID">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header> ModelID </th>
-                      <td mat-cell *matCellDef="let row"> {{row.ModelID}} </td>
-                    </ng-container> -->
 
-
-              <!-- <ng-container matColumnDef="ModelNum">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header> ModelNum  </th>
-                      <td mat-cell *matCellDef="let row"> {{row.ModelNum}} </td>
-                    </ng-container> -->
 
               <ng-container matColumnDef="ModelName">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> ModelName </th>
@@ -200,17 +128,8 @@
 
         </mat-card-content>
       </mat-card>
-      <!-- <div class="card">
-        <div class="card-header">
-          <i class="fa fa-align-justify"></i> <strong> </strong>
 
-          <mat-form-field style="float :right;width: 200px;">
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-          </mat-form-field>
-        </div>
-        <div>  
-        </div>
-      </div> -->
     </div>
 
   </div>
+

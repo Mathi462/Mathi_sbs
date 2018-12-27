@@ -16,6 +16,9 @@ const ModelpdSchema = mongoose.Schema({
   },
   Status: {
     type: String
+  },
+  BrandId:{
+    type:String
   }
  
 });

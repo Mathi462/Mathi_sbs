@@ -61,7 +61,7 @@ router.post('/stock', (req, res, next) => {
 // Get all data
 
 router.get('/stock', (req, res, next) => {
-    Stock.find()
+    Stock.find().populate('brand_name', 'BrandName').populate('model_name', 'ModelName')
         .then(data => {
             res.send(data);
         }).catch(err => {
@@ -185,7 +185,7 @@ router.put('/updatevisible/:id', (req, res, next) => {
 // })
 
 router.post('/search',(req, res,next) =>{
-    Stock.findOne({add_barcode: {$regex : ".*"+req.body.add_barcode+".*"}}).then(data => {
+    Stock.findOne({$and : [{add_barcode: {$regex : ".*"+req.body.add_barcode+".*"}},{ stock_status : { $eq : "Available"}}]}).populate('brand_name', 'BrandName').populate('model_name', 'ModelName').then(data => {
       res.send(data);
   }).catch(err => {
       res.status(500).send({
@@ -248,5 +248,14 @@ router.put('/updateBranch', (req, res, next) => {
         })
     })
 })
+
+
+router.put('/updateStockStatus', (req, res, next) => {
+    console.log(req.body)
+    
+})
+
+
+
 
 module.exports = router;

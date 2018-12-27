@@ -5,8 +5,8 @@ const config = require('../config/database');
 // Category Schema
 const AllinOneStockSchema = mongoose.Schema({
   
-    model_name        : { type: String },
-    brand_name        : { type: String },
+    model_name        : { type: mongoose.Schema.ObjectId, ref: 'Modelpd' },
+    brand_name        : { type: mongoose.Schema.ObjectId, ref: 'Brand' },
     category_type     : { type: String },
     ManufacturerName  : { type: String },
     quantity          : { type: String },
@@ -31,7 +31,18 @@ const AllinOneStockSchema = mongoose.Schema({
         
     
 
-});
+}
+, {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true }
+  });
 
-const Stock = module.exports = mongoose.model('AllStock', AllinOneStockSchema);
+// AllinOneStockSchema.virtual('comments', {
+//     ref: 'Brand',
+//     localField: 'brand_name',
+//     foreignField: 'BrandName'
+//   })
+
+const Stock = module.exports =
+mongoose.model('AllStock', AllinOneStockSchema);
 

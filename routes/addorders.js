@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Addorder = require('../models/addorder');
 const config = require('../config/database');
-
+const Stock = require('../models/all_in_one_stock');
 
 
 
@@ -29,14 +29,29 @@ router.post('/addorder', (req, res, next) => {
         newAddorder.salesperson = req.body.salesperson,
         newAddorder.message = req.body.message,
         newAddorder.productdetails = req.body.productdetails
-    newAddorder.invoice_no = req.body.invoice_no
+        newAddorder.invoice_no = req.body.invoice_no
 
     newAddorder.save()
         .then(data => {
-            // res.send(data);
-            res.json({ success: true, msg: data });
+            Stock.updateMany(
+                { add_barcode: {$in : req.body.barCode}  },
+                {
+                    $set: { stock_status: req.body.stock_status }
+                }
+            ).then(d=> {
+                res.send({
+                    success :  true,
+                    message : d
+                })
+            }, err => {
+                res.send({
+                    success :  false,
+                    message : err
+                })
+            })
+
         }).catch(err => {
-            res.json({ success: false, msg: 'Addorder registered Failed' });
+            res.json({ success: false, msg: err });
         });
 
 });

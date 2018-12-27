@@ -265,7 +265,7 @@
       <div class="row">
         <div class="col-sm-3" style="padding-bottom: 7px; padding-top:7px;">
           <mat-form-field>
-            <mat-select style="color:black" placeholder="BRANCH" formControlName="branch">
+            <mat-select style="color:black" placeholder="BRANCH"  formControlName="branch">
               <option selected>BRANCH</option>
               <mat-option value="{{cat.bname}}" *ngFor="let cat of this.bname1">
                 {{cat.bname}}
@@ -277,9 +277,9 @@
 
         <div class="col-sm-3" style="padding-bottom: 7px; padding-top:7px;">
           <mat-form-field>
-            <mat-select style="color:black" placeholder="BRAND" formControlName="brand_name">
+            <mat-select style="color:black" placeholder="BRAND" (ngModelChange)="brandType($event)" formControlName="brand_name">
               <option selected>BRAND NAME</option>
-              <mat-option value="{{cat.BrandName}}" *ngFor="let cat of this.brand_name">
+              <mat-option value="{{cat._id}}" *ngFor="let cat of this.brand_name">
                 {{cat.BrandName}}
               </mat-option>
             </mat-select>
@@ -291,7 +291,7 @@
           <mat-form-field>
             <mat-select style="color:black" placeholder="MODEL NAME" formControlName="model_name">
               <option selected>MODEL NAME</option>
-              <mat-option value="{{cat.ModelName}}" *ngFor="let cat of this.model_name">
+              <mat-option value="{{cat._id}}" *ngFor="let cat of this.model_name">
                 {{cat.ModelName}}
               </mat-option>
             </mat-select>
@@ -303,7 +303,7 @@
 
         <div class="col-sm-3" style="padding-bottom: 7px; padding-top:7px;">
           <mat-form-field>
-            <mat-select style="color:black" placeholder="CATEGORY" (ngModelChange)="categoryType($event)"
+           <mat-select style="color:black" placeholder="CATEGORY" (ngModelChange)="categoryType($event)"
               formControlName="category_type">
               <option selected>Category Type</option>
               <mat-option value="{{cat.CategoryType}}" *ngFor="let cat of this.category_type">

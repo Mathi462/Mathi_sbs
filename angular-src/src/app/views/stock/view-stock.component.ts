@@ -38,6 +38,8 @@ export class ViewStockComponent implements OnInit {
     displayC: any;
     dataSource: any;
     dataSource1:any;
+    brand_name:any;
+    model_name:any=[];
 
     displayedColumns: string[] = ['add_barcode','brand_name', 'model_name', 'category_type', 'quantity', 'sp', 'cp', 'stock_status', 'branch', 'edit', 'delete'];
 
@@ -72,11 +74,28 @@ export class ViewStockComponent implements OnInit {
         this.apiService.retriveData('/all_in_one_stocks/stock').then(displayStock => {
             this.display3 = displayStock;
             console.log(this.display3)
+            
+            // for(let i=0;i<this.display3.length;i++){
+                
+            //     console.log(this.display3[i])
+            //     callModel(this.display3[i])
+            //     this.model_name.push(this.display3[i])
+            //     console.log(this.model_name)
+            // }
+            
+            // // this.callModel(this.model_name);
+            console.log(this.display3[0].brand_name.BrandName)
             this.dataSource1 = new MatTableDataSource(this.display3);
             console.log(this.dataSource1);
             this.dataSource1.sort = this.sort;
             this.dataSource1.paginator = this.paginator;
         });
+    }
+
+
+    callModel(value){
+        console.log(value)
+
     }
     applyFilter(filterValue: string) {
         this.dataSource1.filter = filterValue.trim().toLowerCase();

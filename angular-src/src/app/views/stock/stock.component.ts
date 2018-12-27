@@ -19,6 +19,7 @@ import { PopupComponent } from "../popup/popup.component";
 export class StockComponent implements OnInit {
 
   category_type: any;
+  
   ManufacturerName: any;
   color: any;
   bname1:any=[];
@@ -50,7 +51,7 @@ export class StockComponent implements OnInit {
                       this.getSGst();
                       this.getColor();
                       this.getBrand();
-                      this.getModel();
+                      // this.getModel();
 
 
                       
@@ -59,7 +60,7 @@ export class StockComponent implements OnInit {
   
   categoryType(value)
    {
-    // console.log(value)   
+    console.log(value)   
     
   //  console.log(this.cat_Type)   
     if(value === 'mobile' || value === 'Mobile' || value === 'MOBILE')
@@ -71,7 +72,11 @@ export class StockComponent implements OnInit {
       this.cat_Type = 'no'
     }
    }
-  
+
+   brandType(value){
+     console.log(value)
+     this.getModel(value);
+   }
   
   ngOnInit(){
 
@@ -99,6 +104,14 @@ export class StockComponent implements OnInit {
      //   console.log(this.max_row)
      //   console.log(this.fieldArray.length)
       })
+
+      this.form.get('quantity').valueChanges.subscribe(value => {
+        this.max_row = Number(value)
+     //   console.log(this.max_row)
+     //   console.log(this.fieldArray.length)
+      })
+
+
   }
 
   
@@ -166,19 +179,29 @@ export class StockComponent implements OnInit {
   }
   getBrand() {
     this.apiService.retriveData("/brands/brand").then(brand => {
-    
+    console.log(brand)
       this.brand_name = brand
     
     })
   }
 
-  getModel() {
-    this.apiService.retriveData("/modelpds/modelpd").then(model => {
-   
-      this.model_name = model
-    
+  // getModel() {
+  //   this.apiService.retriveData("/modelpds/modelpd").then(model => {
+  //        this.model_name = model
+  //   })
+  // }
+
+  getModel(value) {
+    let body ={
+      BrandId : value
+    }
+    console.log(body)
+    this.apiService.getData("/modelpds/search",body).then(model => {
+      console.log(model)
+         this.model_name = model
     })
   }
+  
 
   
 
@@ -206,7 +229,7 @@ deleteFieldValue1(index) {
 }
 
   saveData(){
-  //  console.log(this.form.value)
+   console.log(this.form.value)
 
   if (this.form.valid) {
     if(this.cat_Type === 'yes'){

@@ -302,11 +302,11 @@ export class AddorderComponent implements OnInit {
 
               if (this.stockresult.add_barcode == selectedValue1) {
                 console.log(this.stockresult)
-                this.allStockid = this.stockresult._id
+                this.allStockid.push( this.stockresult._id) 
                 console.log(this.allStockid)
                 contrl.at(this.position).get('barcode').setValue(this.stockresult.add_barcode)
                 contrl.at(this.position).get('qty').setValue(1)
-                contrl.at(this.position).get('product').setValue(this.stockresult.brand_name + ' ' + this.stockresult.model_name + '\n' + 'IMEI1:' + this.stockresult.imei1 + '\n' + 'IMEI2:' + this.stockresult.imei2)
+                contrl.at(this.position).get('product').setValue(this.stockresult.brand_name.BrandName + ' ' + this.stockresult.model_name.ModelName + '\n' + 'IMEI1:' + this.stockresult.imei1 + '\n' + 'IMEI2:' + this.stockresult.imei2)
                 contrl.at(this.position).get('rate').setValue(this.stockresult.cp)
                 contrl.at(this.position).get('gst').setValue(Number(this.stockresult.cgst) + Number(this.stockresult.sgst))
 
@@ -623,6 +623,17 @@ export class AddorderComponent implements OnInit {
     Object.assign(body, { balance: this.balance })
     console.log(body)
 
+    let bar_code=[]
+    for( let i in body.productdetails){
+      bar_code.push(body.productdetails[i].barcode)
+    }
+    Object.assign(body,{
+      barCode : bar_code,
+      stock_status: 'Sold'
+    })
+
+    console.log(body)
+
     console.log(this.form.value)
     this.apiService.getData('/addorders/addorder', body).then(Ordersent => {
       this.billrec = Ordersent;
@@ -630,17 +641,18 @@ export class AddorderComponent implements OnInit {
       if (this.billrec.success === true) {
         this.pop.snakbar('Invoice Added', 'Successfully');
         console.log(body.productdetails.length)
+        
 
-        let qty_size =
-        {
-          quantity: body.productdetails.length
-        }
+        // let qty_size =
+        // {
+        //   quantity: body.productdetails.length
+        // }
 
-        console.log(qty_size)
+        // console.log(qty_size)
 
-        this.apiService.updateData('/stocks/updateQty/' + '5c0e3b8006f4de237c2ce3ab', qty_size).then(dataVisible => {
-          console.log(dataVisible);
-        })
+        // this.apiService.updateData('/stocks/updateQty/' + '5c0e3b8006f4de237c2ce3ab', qty_size).then(dataVisible => {
+        //   console.log(dataVisible);
+        // })
 
 
 

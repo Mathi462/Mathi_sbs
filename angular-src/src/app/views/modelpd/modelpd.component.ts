@@ -38,7 +38,7 @@ export class ModelpdComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   form: FormGroup;
-
+  brand_name : any;
   dataSource: any;
 
   displayedColumns: string[] = ['ModelName','Status', 'edit','delete'];
@@ -53,6 +53,7 @@ export class ModelpdComponent implements OnInit {
       public pop: PopupComponent,
       public formBuilder: FormBuilder) {
         this.showModelpd();
+        this.getBrand()
        }
 
        
@@ -62,7 +63,8 @@ export class ModelpdComponent implements OnInit {
       // ModelID:['',Validators.required],
       
       ModelName:['',Validators.required],
-      Status:['',Validators.required]
+      Status:['',Validators.required],
+      BrandId:['']
 
      
          });
@@ -159,7 +161,13 @@ export class ModelpdComponent implements OnInit {
     });
   }
 
-
+  getBrand() {
+    this.apiService.retriveData("/brands/brand").then(brand => {
+    //  console.log(brand)
+      this.brand_name = brand
+     console.log(this.brand_name)
+    })
+  }
 
   openDialog(value): void {
     console.log(value);
