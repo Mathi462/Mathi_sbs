@@ -1,0 +1,127 @@
+<form [formGroup]="registerForm">
+  <mat-accordion class="example-headers-align">
+
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Exam Subject
+        </mat-panel-title>
+        <mat-panel-description>
+          Select exam Subject
+          <mat-icon>assignment</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-form-field>
+
+
+
+        <mat-select placeholder="Select Subject" class="form-group" formControlName="subject" >
+          <mat-option *ngFor="let Subjects of displayS" [value]="Subjects.subjectName">{{Subjects.subjectName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+
+      <mat-action-row>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Exam Title
+        </mat-panel-title>
+        <mat-panel-description>
+          Type Exam Title
+          <mat-icon>chrome_reader_mode</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-form-field>
+
+        <input matInput type="text" class="form-group" placeholder="Enter Exam Name" formControlName="examtitle" class="form-control" />
+
+      </mat-form-field>
+
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Create Question Paper
+        </mat-panel-title>
+        <mat-panel-description>
+          Select Number of Questions
+          <mat-icon>done_outline</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-form-field style="width:100%">
+
+        <div  >
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          <table mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="select"> 
+              <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+                  [indeterminate]="selection.hasValue() && !isAllSelected()" >
+                </mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                  [checked]="selection.isSelected(row)"  (click)="openDialog(row._id)"  >
+                </mat-checkbox>
+              </td>
+            </ng-container>
+
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="Question">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Question </th>
+              <td mat-cell *matCellDef="let element"> {{element.Question}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="Option1">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Option1 </th>
+              <td mat-cell *matCellDef="let element"> {{element.Option1}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="option2">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Option2 </th>
+              <td mat-cell *matCellDef="let element"> {{element.Option2}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="option3">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Option3 </th>
+              <td mat-cell *matCellDef="let element"> {{element.Option3}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+        </div>
+
+      </mat-form-field>
+
+
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="onSubmit()">Submit</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+
+  </mat-accordion>
+</form>

@@ -1,0 +1,22 @@
+<p>
+  FAculty forum works!
+</p>
+
+<ul><li *ngFor="let message of messages">{{message}}</li></ul>
+
+<!-- <input #newMessage
+  (keyup.enter)="addMessage(newMessage.value)"
+  (blur)="addMessage(newMessage.value); newMessage.value='' ">
+
+<button (click)="addMessage(newMessage.value)">Send</button> -->
+
+
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput #newMessage
+      (keyup.enter)="addMessage(newMessage.value)"
+      (blur)="addMessage(newMessage.value); newMessage.value='' ">
+    </mat-form-field>
+    <button (click)="addMessage(newMessage.value)">Send</button>
+    <button mat-button color="accent">Send</button>
+</form>

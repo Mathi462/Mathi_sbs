@@ -1,0 +1,119 @@
+
+<mat-dialog-content class="mat-typography">
+    <div >
+     <div class="card">
+       <div class="card-header">
+      Update Salesperson
+       </div>
+       <div class="card-body">
+         <form (ngSubmit)="onSubmit2(f2)" #f2="ngForm"   class="jumbotron">
+           <!-- <div class="form-group">
+             <div class="input-group">
+               <div class="input-group-prepend">
+                 <span class="input-group-text"><i class="fa fa-vcard"></i></span>
+               </div>
+               <input type="text" class="form-control"  name="id"  placeholder="id " ngModel  [(ngModel)] = "this.data.cData.id">
+             </div>
+           </div> -->
+
+           <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-book"></i></span>
+              </div>
+              <input type="text" class="form-control" name="shopownerid" placeholder="shopownerid" ngModel  [(ngModel)] = "this.data.cData.shopownerid">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-book"></i></span>
+              </div>
+              <input type="text" class="form-control" name="shopmanager" placeholder="shopmanager" ngModel  [(ngModel)] = "this.data.cData.shopmanager">
+            </div>
+          </div>
+   
+           <div class="form-group">
+             <div class="input-group">
+               <div class="input-group-prepend">
+                 <span class="input-group-text"><i class="fa fa-book"></i></span>
+               </div>
+               <input type="text" class="form-control" name="firstname" placeholder="firstname" ngModel  [(ngModel)] = "this.data.cData.firstname">
+             </div>
+           </div>
+   
+           <div class="form-group">
+             <div class="input-group">
+               <div class="input-group-prepend">
+                 <span class="input-group-text"><i class="fa fa-book"></i></span>
+               </div>
+               <input type="text" class="form-control" name="lastname" placeholder="lastname" ngModel  [(ngModel)] = "this.data.cData.lastname">
+             </div>
+           </div>
+
+           <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-book"></i></span>
+              </div>
+              <input type="text" class="form-control" name="emp_type" placeholder="emp_type" ngModel  [(ngModel)] = "this.data.cData.emp_type">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-book"></i></span>
+              </div>
+              <input type="text" class="form-control" name="dob" placeholder="dob" ngModel  [(ngModel)] = "this.data.cData.dob">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-book"></i></span>
+              </div>
+              <input type="text" class="form-control" name="age" placeholder="age" ngModel  [(ngModel)] = "this.data.cData.age">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-book"></i></span>
+              </div>
+              <input type="text" class="form-control" name="phone" placeholder="phone" ngModel  [(ngModel)] = "this.data.cData.phone">
+            </div>
+          </div>
+
+          <!-- <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-book"></i></span>
+              </div>
+              <input type="text" class="form-control" name="branchid" placeholder="branchid" ngModel  [(ngModel)] = "this.data.cData.branchid">
+            </div>
+          </div> -->
+
+         
+
+         
+         
+         
+   
+        
+          <div class="form-group form-actions" mat-dialog-actions>
+            <button type="submit" class="btn btn-pill btn-success" [mat-dialog-close]="this.data" >Update</button> &nbsp;
+            <button type="button" class="btn btn-pill btn-danger" (click)="onNoClick()">Cancel </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </mat-dialog-content>
+   
+
+   
+

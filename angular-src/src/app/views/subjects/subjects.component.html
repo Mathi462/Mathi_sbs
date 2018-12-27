@@ -1,0 +1,175 @@
+<div class="row">
+<div class="col-sm-4">
+  <div class="card">
+    <div class="card-header">
+      Adding Subject
+    </div>
+    <!-- <div class="card-body">
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="jumbotron">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-vcard"></i></span>
+            </div>
+            <input type="text" class="form-control" name="sid" placeholder="Subject ID" ngModel>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-book"></i></span>
+            </div>
+            <input type="text" class="form-control" name="subjectName" placeholder="Subject Name" ngModel>
+          </div>
+        </div>
+        <div class="form-group form-actions">
+          <button type="submit" class="btn btn-pill btn-success">Submit</button> &nbsp;
+          <button type="reset" class="btn btn-pill btn-danger">Reset </button>
+        </div>
+
+      </form>
+    </div> -->
+
+    <div class="card-body">
+      <form [formGroup] = "form" >
+      <div class="form-group" [ngClass]="displayFieldCss('sid')">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-vcard"></i></span>
+          </div>
+          <input type="text" formControlName="sid" class="form-control"  placeholder="Subject ID" formControlName="sid" tabindex="1">
+          <app-field-error-display [displayError]="isFieldValid('sid')" errorMsg="Enter Grade ID">
+          </app-field-error-display>
+        </div>
+      </div>
+
+     
+      <div class="form-group">
+        <div class="input-group" [ngClass]="displayFieldCss('subjectName')">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-book"></i></span>
+          </div>
+          <input type="text" formControlName="subjectName" class="form-control" placeholder="Subject Name" formControlName="subjectName" tabindex="1">
+          <app-field-error-display [displayError]="isFieldValid('subjectName')" errorMsg="Enter Subject Name">
+          </app-field-error-display>
+        </div>
+      </div>
+      <div class="form-group form-actions">
+        <button type="submit" (click)="onSubmit()" class="btn btn-pill btn-success">Submit</button> &nbsp;
+        <button type="reset" class="btn btn-pill btn-danger">Reset </button>
+      </div>
+
+    </form>
+  </div>
+  </div>
+</div>
+
+
+<!-- 
+<div class="col-sm-8">
+  <div class="card">
+    <div class="card-header">
+      <i class="fa fa-align-justify"></i> Display Subject
+    </div>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Subject ID</th>
+            <th>Subject Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dis of display">
+            
+            <td>{{dis.sid}}</td>
+            <td>{{dis.subjectName}}</td>
+            <td>
+
+              <button mat-icon-button (click)="openDialog(dis)" color="primary">
+                <mat-icon>edit</mat-icon>
+              </button>
+
+            </td>
+            <td>
+              <button mat-icon-button color="warn" (click)="deleteSubject(dis._id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div> -->
+
+<div class="col-lg-8">
+    <div class="card">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i> <strong> Display Subject</strong>
+
+        <mat-form-field style="float :right;width: 200px;">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+      </div>
+      <div>
+
+
+        <div class="mat-elevation-z8">
+          <table mat-table style="width: 100%;" [dataSource]="dataSource" matSort>
+
+
+            <ng-container matColumnDef="sid">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Subject ID </th>
+              <td mat-cell *matCellDef="let row"> {{row.sid}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="subjectName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Subject Name </th>
+              <td mat-cell *matCellDef="let row"> {{row.subjectName}} </td>
+            </ng-container>
+
+
+
+            <ng-container matColumnDef="edit">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Edit </th>
+              <td mat-cell *matCellDef="let row">
+                <button mat-icon-button color="primary" (click)="openDialog(row)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Delete </th>
+              <td mat-cell *matCellDef="let row">
+                <button mat-icon-button color="warn" (click)="deleteSubject(row._id)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+          </table>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+
+
+
+      </div>
+
+
+
+
+    </div>
+  </div>
+</div>

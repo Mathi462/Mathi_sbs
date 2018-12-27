@@ -1,0 +1,144 @@
+<!-- <mat-dialog-content class="mat-typography">
+
+    <mat-card>
+        <mat-card-title style="text-align: center;"> <strong> Move Stock to Branch </strong> </mat-card-title>
+
+
+
+        <div class="row">
+            <form [formGroup]="form">
+                <label> <strong> From Branch </strong> </label> &nbsp;
+                <mat-form-field appearance="fill" style="width:auto;"> 
+                    
+                    <input matInput disabled style="font-size: 25px;"  value={{fromBranch}} > 
+                </mat-form-field>
+
+                &nbsp;&nbsp;
+                <label> <strong> To Branch </strong></label> &nbsp;
+                <mat-form-field style="width:auto;">
+
+                    <mat-select  placeholder="Sclect Branch" formControlName="branch">
+                        <mat-option *ngFor="let bname of branch" [value]="bname.bname">
+                            {{bname.bname}}
+                        </mat-option>
+                    </mat-select>
+
+                    <mat-error>Sclect Any One Branch</mat-error>
+                </mat-form-field>
+
+            </form>
+            &nbsp;&nbsp;&nbsp;
+           
+        </div>
+
+        
+    </mat-card>
+    <mat-card>
+        <mat-card-title style="text-align: center;"> <strong> Stock Details </strong> </mat-card-title>
+        <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+            </mat-form-field>
+        <table mat-table class="col-sm-12" [dataSource]="dataSource" matSort>
+            
+
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="add_barcode">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Brand Name </th>
+                <td mat-cell *matCellDef="let row"> {{row.add_barcode}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="battery_no">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> battery_no </th>
+                <td mat-cell *matCellDef="let row"> {{row.battery_no}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="color">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> color </th>
+                <td mat-cell *matCellDef="let row"> {{row.color}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="imei1">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> imei1 </th>
+                <td mat-cell *matCellDef="let row"> {{row.imei1}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="imei2">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> imei2 </th>
+                <td mat-cell *matCellDef="let row"> {{row.imei2}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+        </table>
+
+    </mat-card>
+    <mat-card style="text-align:right;">
+    <mat-card-footer > -->
+
+<!-- <button mat-raised-button style="border-radius: 25px;" (click)="onSubmit()" color="primary">Submit</button>
+        &nbsp;
+        <button mat-raised-button style="border-radius: 25px;" mat-dialog-close color="accent">Cancel</button> -->
+<!-- </mat-card-footer> -->
+<!-- </mat-card>
+
+</mat-dialog-content> -->
+
+
+
+<mat-dialog-content class="mat-typography">
+
+    <mat-card>
+
+        <mat-card-title style="text-align: center;"> <strong> Move Stock to Branch </strong> </mat-card-title>
+        <div class="row">
+            <form [formGroup]="form">
+                <label> <strong> From Branch </strong> </label> &nbsp;
+                <mat-form-field appearance="fill" style="width:auto;">
+
+                    <input matInput disabled style="font-size: 25px;" value={{fromBranch}}>
+                </mat-form-field>
+
+                &nbsp;&nbsp;
+                <label> <strong> To Branch </strong></label> &nbsp;
+                <mat-form-field style="width:auto;">
+
+                    <mat-select placeholder="Sclect Branch" formControlName="branch">
+                        <mat-option *ngFor="let bname of branch" [value]="bname.bname">
+                            {{bname.bname}}
+                        </mat-option>
+                    </mat-select>
+
+                    <mat-error>Sclect Any One Branch</mat-error>
+                </mat-form-field>
+
+            </form>
+            &nbsp;&nbsp;&nbsp;
+
+        </div>
+    </mat-card>
+    <mat-card style="text-align:right;">
+            <mat-card-footer > 
+        
+         <button mat-raised-button style="border-radius: 25px;" (click)="onSubmit()" color="primary">Submit</button>
+                &nbsp;
+                <button mat-raised-button style="border-radius: 25px;" mat-dialog-close color="accent">Cancel</button> 
+        </mat-card-footer> 
+        </mat-card>
+
+
+
+
+</mat-dialog-content>

@@ -1,0 +1,75 @@
+
+
+<mat-dialog-content class="mat-typography">
+<div >
+    <div class="card">
+      <div class="card-header">
+        Edit Faculty
+      </div>
+
+      <div class="card-body" >
+        <form (ngSubmit)="onSubmit2(f2)" #f2="ngForm"   class="jumbotron">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-vcard"></i></span>
+              </div>
+              <input type="text" class="form-control"  name="firstname"  placeholder="First Name" ngModel  [(ngModel)] = "this.data.cData.firstname">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-id-card-o"></i></span>
+              </div>
+              <input type="text" class="form-control" name="lastname" placeholder="Last Name" ngModel  [(ngModel)] = "this.data.cData.lastname">
+            </div>
+          </div>
+          <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-id-badge"></i></span>
+                </div>
+                <input type="text" class="form-control" name="username" placeholder="User Name" ngModel  [(ngModel)] = "this.data.cData.username">
+              </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-at"></i></span>
+                  </div>
+                  <input type="text" class="form-control" name="email" placeholder="Email" ngModel  [(ngModel)] = "this.data.cData.email">
+                </div>
+              </div>
+              <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-address-book-o"></i></span>
+                    </div>
+                    <textarea type="text" class="form-control" name="address" placeholder="Address" ngModel  [(ngModel)] = "this.data.cData.address"></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-mobile-phone"></i></span>
+                      </div>
+                      <input type="text" class="form-control" name="mobile" placeholder="Mobile" ngModel  [(ngModel)] = "this.data.cData.mobile">
+                    </div>
+                  </div>
+
+                 
+
+
+
+          <div class="form-group form-actions" mat-dialog-actions>
+            <button type="submit" class="btn btn-pill btn-success" [mat-dialog-close]="this.data" >Update</button> &nbsp;
+            <button type="button" class="btn btn-pill btn-danger" (click)="onNoClick()">Cancel </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</mat-dialog-content>

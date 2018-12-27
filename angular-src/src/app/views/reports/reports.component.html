@@ -1,0 +1,345 @@
+<mat-card>
+  <mat-card>
+    <mat-card-subtitle>
+      <h3> <strong> Reports </strong> </h3>
+    </mat-card-subtitle>
+
+    <div class="row">
+      <div class="col-sm-2">
+        <mat-form-field style="width:100%;">
+          <input matInput [matDatepicker]="p" placeholder="FROM DATE" [(ngModel)]="fromDate" (dateChange)="filter()">
+          <mat-datepicker-toggle matSuffix [for]="p"></mat-datepicker-toggle>
+          <mat-datepicker #p></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-2">
+        <mat-form-field style="width:100%">
+          <input matInput [matDatepicker]="picker" placeholder="TO DATE" [(ngModel)]="toDate" (dateChange)="filter1()">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-2">
+          <mat-form-field style="width:100%">
+            <mat-select [(ngModel)]="options" (ngModelChange)="showTable(event)" placeholder="Choose reports">
+              <mat-option value="expense"> Expense </mat-option>
+              <mat-option value="stock"> Stock </mat-option>
+              <mat-option value="service"> Service </mat-option>
+              <mat-option value="addorder"> Transaction </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      
+
+      <div class="col-sm-2">
+        <button mat-raised-button style="width:auto;text-align: center" color="primary" (click)="cnvrtToPdf()">
+          <mat-icon>vertical_align_bottom</mat-icon> Download PDF
+        </button>
+      </div>
+
+      <div class="col-sm-2">
+        <button mat-raised-button style="width:100%;text-align: center" color="primary" (click)="exportAsXLSX()">
+          <mat-icon>vertical_align_bottom</mat-icon> Excel
+        </button>
+      </div>
+
+      <!-- <div class="col-sm-2">
+      </div> -->
+      </div>
+      
+
+  </mat-card>
+
+  <!-- <mat-card> -->
+  <mat-card-content>
+    <div>
+      <div class="mat-elevation-z8">
+        <div *ngIf="tables.stock">
+          <mat-card-subtitle>
+            <mat-form-field style="float:right;">
+              <input matInput (keyup)="stockFilter($event.target.value)" placeholder="Search here...">&nbsp;
+            </mat-form-field>
+          </mat-card-subtitle>
+          <table colour="primary" mat-table class="col-sm-12" [dataSource]="dataSource" matSort id="toPdf">
+
+            <ng-container matColumnDef="model_name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b>MODEL NAME</b> </div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.model_name}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="brand_name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b>BRAND NAME</b></div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.brand_name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="category_type">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b>CATEGORY TYPE</b></div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.category_type}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="quantity">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b>QUANTITY</b> </div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.quantity}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="sp">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b>SELLING PRICE</b> </div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.sp}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="cp">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b>COSTS PRICE </b></div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.cp}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="stock_status">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"> <b>STOCK STATUS</b></div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.stock_status}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="gst">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"> <b>GST</b></div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.gst}} </td>
+            </ng-container>
+            <ng-container matColumnDef="branch">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b>BRANCH</b></div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.branch}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+          </table>
+        </div>
+        <div *ngIf="tables.expense">
+          <mat-card-subtitle>
+            <mat-form-field style="float:right">
+              <input matInput (keyup)="expenseFilter($event.target.value)" placeholder="Search by Branch Name">
+            </mat-form-field>
+          </mat-card-subtitle>
+          <table mat-table class="col-sm-12" [dataSource]="dataSource1" matSort id="toPdf">
+
+
+            <ng-container matColumnDef="ExpenseType">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b>EXPENSE TYPE</b></div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.ExpenseType}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Branchname">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b> BRANCH NAME</b> </div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.Branchname}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Amount">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b>AMOUNT</b></div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.Amount}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="descripition">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b>DESCRIPTION</b></div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.descripition}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b> DATE </b> </div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.date}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns1;">
+            </tr>
+          </table>
+        </div>
+        <div *ngIf="tables.service">
+          <mat-card-subtitle>
+            <mat-form-field style="float:right">
+              <input matInput (keyup)="serviceFilter($event.target.value)" placeholder="Search here...">
+            </mat-form-field>
+          </mat-card-subtitle>
+          <table mat-table class="col-sm-12" [dataSource]="dataSource2" matSort id="toPdf">
+
+            <ng-container matColumnDef="ProductModelnum">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"> <b>PRODUCT MODEL NO </b></div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.ProductModelnum}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="ProductBrandname">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b> PRODUCT BRAND NAME</b></div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.ProductBrandname}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="CustmerName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"> <b>CUSTOMER NAME</b> </div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.CustmerName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="CustmerContact">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b> CUSTOMER CONTACT</b></div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.CustmerContact}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="JOBNum">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"> <b>JOB NUM </b></div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.JOBNum}} </td>
+            </ng-container>
+
+
+
+            <ng-container matColumnDef="others">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"> <b>OTHERS</b> </div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.others}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="deliverydate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b>DELIVERY DATE</b></div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.deliverydate}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"> <b>STATUS</b> </div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.status}} </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns2;">
+            </tr>
+          </table>
+        </div>
+        <div *ngIf="tables.addorder">
+          <mat-card-subtitle>
+            <mat-form-field style="float:right">
+              <input matInput (keyup)="addorderFilter($event.target.value)" placeholder="Search here...">
+            </mat-form-field>
+          </mat-card-subtitle>
+          <table colour="primary" mat-table class="col-sm-12" [dataSource]="dataSource3" matSort id="toPdf">
+
+
+
+            <ng-container matColumnDef="invoice_no">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b>INVOICE</b> </div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.invoice_no}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="custmername">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b>Custmer Name</b></div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.custmername}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="custmerphone">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b>Custmer Phone</b></div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.custmerphone}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="subtotal">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b>SubTotal</b> </div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.subtotal}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="cgst">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b>CGST</b> </div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.cgst}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="sgst">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b>SGST </b></div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.sgst}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="discount">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"> <b>Discount</b></div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.discount}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="paid">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"> <b>Paid</b></div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.paid}} </td>
+            </ng-container>
+            <ng-container matColumnDef="balance">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b>Balance</b></div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.balance}} </td>
+            </ng-container>
+            <ng-container matColumnDef="salesperson">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div style="font-weight:450;color:black"><b>Salesperson</b></div>
+              </th>
+              <td mat-cell *matCellDef="let row"> {{row.salesperson}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns3;">
+            </tr>
+          </table>
+        </div>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
+    </div>
+  </mat-card-content>
+  <!-- </mat-card> -->
+
+</mat-card>

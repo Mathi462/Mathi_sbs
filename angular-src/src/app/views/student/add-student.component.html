@@ -1,0 +1,300 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        Adding Faculty
+      </div>
+      <div class="card-body">
+        <form class="form-horizontal" [formGroup]="form">
+
+            <div class="form-group" [ngClass]="displayFieldCss('firstname')">
+              <div class="col-sm-12">
+                <label for="name" class="control-label required">First Name</label>
+                <input type="text" id="firstname" class="form-control" formControlName="firstname">
+                <app-field-error-display [displayError]="isFieldValid('firstname')" errorMsg="Please Enter FirstName">
+                </app-field-error-display>
+              </div>
+            </div>
+
+            <div class="form-group" [ngClass]="displayFieldCss('lastname')">
+              <div class="col-sm-12">
+                <label for="name" class="control-label required">Last Name</label>
+                <input type="text" id="lastname" class="form-control" formControlName="lastname">
+                <app-field-error-display [displayError]="isFieldValid('lastname')" errorMsg="Please Enter LastName">
+                </app-field-error-display>
+              </div>
+            </div>
+
+          <div class="form-group" [ngClass]="displayFieldCss('username')">
+            <div class="col-sm-12">
+              <label for="name" class="control-label required">User Name</label>
+              <input type="text" id="username" class="form-control" formControlName="username">
+              <app-field-error-display [displayError]="isFieldValid('username')" errorMsg="Please Enter UserName">
+              </app-field-error-display>
+            </div>
+          </div>
+
+          <div class="form-group" [ngClass]="displayFieldCss('email')">
+            <div class="col-sm-12">
+              <label for="email" class="control-label required">Email</label>
+              <input type="text" id="email" class="form-control" formControlName="email">
+              <app-field-error-display [displayError]="isFieldValid('email')" errorMsg="Please Enter valied email">
+              </app-field-error-display>
+            </div>
+          </div>
+
+          <div class="form-group" [ngClass]="displayFieldCss('password')">
+            <div class="col-sm-12">
+              <label for="password" class="control-label required">Password</label>
+              <input type="password" id="password" class="form-control" formControlName="password">
+              <app-field-error-display [displayError]="isFieldValid('password')" errorMsg="Please Enter password">
+              </app-field-error-display>
+            </div>
+          </div>
+
+          <div class="form-group" [ngClass]="displayFieldCss('address')">
+            <div class="col-sm-12">
+              <label for="name" class="control-label required">Address</label>
+              <textarea type="text" id="address" class="form-control" formControlName="address"></textarea>
+              <app-field-error-display [displayError]="isFieldValid('address')" errorMsg="Please Enter address">
+              </app-field-error-display>
+            </div>
+          </div>
+
+          <div class="form-group" [ngClass]="displayFieldCss('mobile')">
+            <div class="col-sm-12">
+              <label for="address" class="control-label required">Mobile</label>
+              <input type="text" id="mobile" class="form-control" formControlName="mobile">
+              <app-field-error-display [displayError]="isFieldValid('mobile')" errorMsg="Please Enter valied mobile Number">
+              </app-field-error-display>
+            </div>
+          </div>
+
+          <mat-form-field class="col-sm-12">
+            <mat-select placeholder="Select Curriculum" class="form-group" [ngClass]="displayFieldCss('curriculum')"
+              formControlName="curriculum">
+              <mat-option *ngFor="let curriculum of displayC" [value]="curriculum.curriculumName">
+                {{curriculum.curriculumName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          
+
+          <mat-form-field class="col-sm-12">
+            <mat-select placeholder="Select Grade" class="form-group" [ngClass]="displayFieldCss('grade')"
+              formControlName="grade">
+              <mat-option *ngFor="let grade of displayG" [value]="grade.gradeName">
+                {{grade.gradeName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="col-sm-12">
+            <mat-select placeholder="Select Subject" class="form-group" [ngClass]="displayFieldCss('subjects')"
+              formControlName="subjects" multiple>
+              <mat-option *ngFor="let Subjects of displayS" [value]="Subjects.subjectName">{{Subjects.subjectName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="col-sm-12">
+            <mat-select placeholder="Select Faculty" class="form-group" [ngClass]="displayFieldCss('faculty_name')"
+              formControlName="faculty_name" multiple>
+              <mat-option *ngFor="let faculty of displayF" [value]="faculty.firstname">{{faculty.firstname}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+
+          <div class="form-group form-actions">
+            <button type="submit" (click)="onSubmit()" class="btn btn-pill btn-success">Submit</button> &nbsp;
+            <button type="reset" class="btn btn-pill btn-danger">Reset </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+<form class="form-horizontal" [formGroup]="form">
+
+    <div class="form-group" [ngClass]="displayFieldCss('firstname')">
+        <div class="col-sm-12">
+          <label for="name" class="control-label required">First Name</label>
+          <input type="text" id="firstname" class="form-control" formControlName="firstname">
+
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="displayFieldCss('lastname')">
+        <div class="col-sm-12">
+          <label for="name" class="control-label required">Last Name</label>
+          <input type="text" id="lastname" class="form-control" formControlName="lastname">
+
+        </div>
+      </div>
+
+    <div class="form-group" [ngClass]="displayFieldCss('username')">
+      <div class="col-sm-12">
+        <label for="name" class="control-label required">User Name</label>
+        <input type="text" id="username" class="form-control" formControlName="username">
+
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="displayFieldCss('email')">
+      <div class="col-sm-12">
+        <label for="email" class="control-label required">Email</label>
+        <input type="text" id="email" class="form-control" formControlName="email">
+
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="displayFieldCss('password')">
+      <div class="col-sm-12">
+        <label for="password" class="control-label required">Password</label>
+        <input type="password" id="password" class="form-control" formControlName="password">
+
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="displayFieldCss('address')">
+      <div class="col-sm-12">
+        <label for="name" class="control-label required">Address</label>
+        <textarea type="text" id="address" class="form-control" formControlName="address"></textarea>
+
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="displayFieldCss('mobile')">
+      <div class="col-sm-12">
+        <label for="address" class="control-label required">Mobile</label>
+        <input type="text" id="mobile" class="form-control" formControlName="mobile">
+
+      </div>
+    </div>
+
+    <div formGroupName="grade">
+
+      <div class="form-group">
+
+        <div class="col-md-6" [ngClass]="displayFieldCss('grade.gradeName')">
+          <label for="street" class="control-label required">Grade</label>
+          <input type="text" id="gradeName" class="form-control" formControlName="gradeName">
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+    <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
+    <button class="btn" (click)="reset()">Reset</button>
+
+  </form> -->
+
+<!-- 
+<div class="row ">
+  <div class="col-sm-8">
+    <div class="card">
+      <div class="card-header">
+        Adding Student
+      </div>
+      <div class="card-body">
+        <form class="form-horizontal" [formGroup]="form">
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="form-group" [ngClass]="displayFieldCss('firstname')">
+                <input type="text" id="firstname" class="form-control input-lg" placeholder="First Name"
+                  formControlName="firstname" tabindex="1">
+
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="form-group" [ngClass]="displayFieldCss('lastname')">
+                <input type="text" id="lastname" class="form-control input-lg" placeholder="Last Name" tabindex="2"
+                  formControlName="lastname">
+
+              </div>
+            </div>
+          </div>
+          <div class="form-group" [ngClass]="displayFieldCss('username')">
+            <input type="text" id="username" class="form-control input-lg" placeholder="User Name" tabindex="3"
+              formControlName="username">
+
+          </div>
+          <div class="form-group" [ngClass]="displayFieldCss('email')">
+            <input type="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4"
+              formControlName="email">
+
+          </div>
+
+
+          <div class="form-group" [ngClass]="displayFieldCss('password')">
+            <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password"
+              tabindex="5" formControlName="password">
+
+          </div>
+
+          <div class="form-group" [ngClass]="displayFieldCss('address')">
+            <textarea rows="5" type="text" id="address" class="form-control input-lg" placeholder="Address" tabindex="6"
+              formControlName="address"></textarea>
+
+          </div>
+
+          <div class="form-group" [ngClass]="displayFieldCss('mobile')">
+            <input type="text" id="mobile" class="form-control input-lg" placeholder="Mobile Number" tabindex="7"
+              formControlName="mobile">
+
+          </div>
+
+         
+
+          <mat-form-field class="col-sm-12">
+            <mat-select placeholder="Select Curriculum" class="form-group" [ngClass]="displayFieldCss('curriculum')"
+              formControlName="curriculum">
+              <mat-option *ngFor="let curriculum of displayC" [value]="curriculum.curriculumName">
+                {{curriculum.curriculumName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          
+
+          <mat-form-field class="col-sm-12">
+            <mat-select placeholder="Select Grade" class="form-group" [ngClass]="displayFieldCss('grade')"
+              formControlName="grade">
+              <mat-option *ngFor="let grade of displayG" [value]="grade.gradeName">
+                {{grade.gradeName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="col-sm-12">
+            <mat-select placeholder="Select Subject" class="form-group" [ngClass]="displayFieldCss('subjects')"
+              formControlName="subjects" multiple>
+              <mat-option *ngFor="let Subjects of displayS" [value]="Subjects.subjectName">{{Subjects.subjectName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="col-sm-12">
+            <mat-select placeholder="Select Faculty" class="form-group" [ngClass]="displayFieldCss('faculty_name')"
+              formControlName="faculty_name" multiple>
+              <mat-option *ngFor="let faculty of displayF" [value]="faculty.firstname">{{faculty.firstname}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+          <div class="form-group form-actions">
+            <button type="submit" (click)="onSubmit()" class="btn btn-pill btn-success">Submit</button> &nbsp;
+            <button type="reset" class="btn btn-pill btn-danger">Reset </button>
+          </div>
+
+        </form>
+      </div>`
+    </div>
+  </div>
+</div> -->

@@ -1,0 +1,306 @@
+<mat-card class="container">
+
+  <mat-card-title style="height: 10px;"> <strong>Update Stock</strong> </mat-card-title>
+  <form [formGroup]="form">
+    <mat-card-content>
+      <div class="row">
+        <div class="col-sm-3" style="padding-bottom: 7px; padding-top:7px;">
+          <mat-form-field>
+            <mat-select style="color:black" placeholder="BRANCH" formControlName="branch">
+              <option selected>BRANCH</option>
+              <mat-option value="{{cat.bname}}" *ngFor="let cat of this.bname1">
+                {{cat.bname}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-3" style="padding-bottom: 7px; padding-top:7px;">
+          <mat-form-field>
+            <mat-select style="color:black" placeholder="BRAND" formControlName="brand_name">
+              <option selected>BRAND NAME</option>
+              <mat-option value="{{cat.BrandName}}" *ngFor="let cat of this.brand_name">
+                {{cat.BrandName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-3" style="padding-bottom: 7px; padding-top:7px;">
+          <mat-form-field>
+            <mat-select style="color:black" placeholder="MODEL NAME" formControlName="model_name">
+              <option selected>MODEL NAME</option>
+              <mat-option value="{{cat.ModelName}}" *ngFor="let cat of this.model_name">
+                {{cat.ModelName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-3" style="padding-bottom: 7px; padding-top:7px;">
+          <mat-form-field>
+            <mat-select style="color:black" placeholder="CATEGORY" (ngModelChange)="categoryType($event)"
+              formControlName="category_type">
+              <option selected>Category Type</option>
+              <mat-option value="{{cat.CategoryType}}" *ngFor="let cat of this.category_type">
+                {{cat.CategoryType}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-3" style="padding-bottom: 7px; padding-top:7px;">
+          <mat-form-field>
+            <mat-select style="color:black" placeholder="MANUFACTURE NAME" formControlName="ManufacturerName">
+              <option selected>MANUFACTURE</option>
+              <mat-option value="{{cat.ManufacturerName}}" *ngFor="let cat of this.ManufacturerName">
+                {{cat.ManufacturerName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-sm-3" style="padding-bottom: 7px; padding-top:7px;">
+          <mat-form-field>
+            <mat-select style="color:black" placeholder="CGST" formControlName="cgst">
+              <option selected>CGST</option>
+              <mat-option value="{{cat.CGST}}" *ngFor="let cat of this.cgst">
+                {{cat.CGST}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-3" style="padding-bottom: 7px; padding-top:7px;">
+          <mat-form-field>
+            <mat-select style="color:black" placeholder="SGST" formControlName="sgst">
+              <option selected>SGST</option>
+              <mat-option value="{{cat.SGST}}" *ngFor="let cat of this.sgst">
+                {{cat.SGST}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-3" style="padding-bottom: 3px; padding-top:10px;">
+          <mat-form-field>
+            <input matInput style="color:black" type="text" placeholder="QUANTITY " formControlName="quantity">
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div *ngIf="cat_Type=='yes'">
+        <div class="container"> 
+          <table>
+            <thead>
+              <tr>
+                <th>BAR-CODE</th>
+                <th>IMEI1</th>
+                <th>IMEI2</th>
+                <th>BATTERY NUM</th>
+                <th>COLOUR</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let field of fieldArray; let i = index">
+                <td>
+                  <input [(ngModel)]="field.add_barcode" [ngModelOptions]="{standalone: true}" class="form-control"
+                    type="text" name="{{field.add_barcode}}" />
+                </td>
+                <td>
+                  <input [(ngModel)]="field.imei1" [ngModelOptions]="{standalone: true}" class="form-control" type="text"
+                    name="{{field.imei1}}" />
+                </td>
+                <td>
+                  <input [(ngModel)]="field.imei2" [ngModelOptions]="{standalone: true}" class="form-control" type="text"
+                    name="{{field.imei2}}" />
+                </td>
+                <td>
+                  <input [(ngModel)]="field.battery_no" [ngModelOptions]="{standalone: true}" class="form-control" type="text"
+                    name="{{field.battery_no}}" />
+                </td>
+                <td>
+                  <input [(ngModel)]="field.color" [ngModelOptions]="{standalone: true}" class="form-control" type="text"
+                    name="{{field.color}}" />
+                </td>
+                <td>
+                  <!-- <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)">Delete</button> -->
+                  <button class="btn" type="button" (click)="deleteFieldValue(i)"><i class="fa fa-trash-o"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input class="form-control" type="text" id="add_barcode" [(ngModel)]="newAttribute.add_barcode"
+                    [ngModelOptions]="{standalone: true}" name="add_barcode" />
+                </td>
+                <td>
+                  <input class="form-control" type="text" id="imei1" [(ngModel)]="newAttribute.imei1" [ngModelOptions]="{standalone: true}"
+                    name="imei1" />
+                </td>
+                <td>
+                  <input class="form-control" type="text" id="imei2" [(ngModel)]="newAttribute.imei2" [ngModelOptions]="{standalone: true}"
+                    name="imei2" />
+                </td>
+                <td>
+                  <input class="form-control" type="text" id="battery_no" [(ngModel)]="newAttribute.battery_no"
+                    [ngModelOptions]="{standalone: true}" name="battery_no" />
+                </td>
+                <td>
+                  <!-- <input class="form-control" type="text" id="color" [(ngModel)]="newAttribute.color" [ngModelOptions]="{standalone: true}" name="color" /> -->
+                  <select class="form-control" id="color" placeholder="SELECT COLOUR" [(ngModel)]="newAttribute.color"
+                    [ngModelOptions]="{standalone: true}" name="color">
+                    <option value="" disabled selected>SELECT COLOUR</option>
+                    <option value="{{cat.ColourName}}" *ngFor="let cat of this.color">
+                      {{cat.ColourName}}
+                    </option>
+                  </select>
+                </td>
+                <td *ngIf="fieldArray.length<max_row-1">
+                  <!-- <button class="btn btn-default" type="button" (click)="addFieldValue()">Add</button> -->
+                  <button class="btn" type="button" (click)="addFieldValue()"><i class="fa fa-plus"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div *ngIf="cat_Type=='no'">
+        <div class="container">
+          <table>
+            <thead>
+              <tr>
+                <th>BAR-CODE</th>
+                <th>BATTERY NUM</th>
+                <th>OTHER NUM</th>
+                <th>TYPE</th>
+                <th>COLOUR</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let field of fieldArray1; let i = index">
+                <td>
+                  <input [(ngModel)]="field.add_barcode" [ngModelOptions]="{standalone:true}" class="form-control"
+                    type="text" name="{{field.add_barcode}}" />
+                </td>
+                <td>
+                  <input [(ngModel)]="field.battery_no" [ngModelOptions]="{standalone:true}" class="form-control" type="text"
+                    name="{{field.battery_no}}" />
+                </td>
+                <td>
+                  <input [(ngModel)]="field.otherno" [ngModelOptions]="{standalone:true}" class="form-control" type="text"
+                    name="{{field.otherno}}" />
+                </td>
+                <td>
+                  <input [(ngModel)]="field.typeon" [ngModelOptions]="{standalone:true}" class="form-control" type="text"
+                    name="{{field.typeon}}" />
+                </td>
+
+                <td>
+                  <input [(ngModel)]="field.color" [ngModelOptions]="{standalone:true}" class="form-control" type="text"
+                    name="{{field.color}}" />
+                </td>
+                <td>
+                  <!-- <button class="btn btn-default" type="button" (click)="deleteFieldValue1(i)">Delete</button> -->
+                  <button class="btn" type="button" (click)="deleteFieldValue1(i)"><i class="fa fa-trash-o"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input class="form-control" type="text" id="add_barcode" [(ngModel)]="newAttribute1.add_barcode"
+                    [ngModelOptions]="{standalone: true}" name="add_barcode" />
+                </td>
+                <td>
+                  <input class="form-control" type="text" id="battery_no" [(ngModel)]="newAttribute1.battery_no"
+                    [ngModelOptions]="{standalone: true}" name="battery_no" />
+                </td>
+                <td>
+                  <input class="form-control" type="text" id="otherno" [(ngModel)]="newAttribute1.otherno"
+                    [ngModelOptions]="{standalone: true}" name="otherno" />
+                </td>
+                <td>
+                  <input class="form-control" type="text" id="typeon" [(ngModel)]="newAttribute1.typeon"
+                    [ngModelOptions]="{standalone: true}" name="typeon" />
+                </td>
+
+                <td>
+                  <!-- <input class="form-control" type="text" id="color" [(ngModel)]="newAttribute1.color" [ngModelOptions]="{standalone: true}" name="color" /> -->
+                  <select class="form-control" id="color" placeholder="SELECT COLOUR" [(ngModel)]="newAttribute1.color"
+                    [ngModelOptions]="{standalone: true}" name="color">
+                    <option value="" disabled selected>SELECT COLOUR</option>
+                    <option value="{{cat.ColourName}}" *ngFor="let cat of this.color">
+                      {{cat.ColourName}}
+                    </option>
+                  </select>
+                </td>
+                <td *ngIf="fieldArray1.length<max_row-1">
+                  <!-- <button class="btn btn-default" type="button" (click)="addFieldValue1()">Add</button> -->
+                  <button class="btn" type="button" (click)="addFieldValue1()"><i class="fa fa-plus"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-sm-3" style="padding-bottom: 3px; padding-top:0px;">
+          <mat-form-field>
+            <input matInput style="color:black" type="text" placeholder="DP " formControlName="dp" style="padding-left: 5px">
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-3" style="padding-bottom: 3px; padding-top:0px;">
+          <mat-form-field>
+            <input matInput style="color:black" type="text" placeholder="LP " formControlName="lp" style="padding-left: 5px">
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-3" style="padding-bottom: 3px; padding-top:0px;">
+          <mat-form-field>
+            <input matInput style="color:black" type="text" placeholder="SP " formControlName="sp" style="padding-left: 5px">
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-3" style="padding-bottom: 3px; padding-top:0px;">
+          <mat-form-field>
+            <input matInput style="color:black" type="text" placeholder="CP " formControlName="cp" style="padding-left: 5px">
+          </mat-form-field>
+        </div>
+
+
+
+
+        <div class="col-sm-3" style="padding-bottom: 7px; padding-top:7px;">
+          <mat-form-field>
+            <mat-select style="color:black" placeholder="STATUS" formControlName="stock_status">
+              <mat-option value="Select">Select</mat-option>
+              <mat-option value="Available">Available</mat-option>
+              <mat-option value="UnAvailable">UnAvailable</mat-option>
+
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-3" style="padding-bottom: 3px; padding-top:10px;">
+          <mat-form-field>
+            <input matInput style="color:black" type="text" placeholder="REMARKS " formControlName="remarks" style="padding-left: 5px;">
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-card-footer style="float:right;height: 50px;">
+
+        <button mat-raised-button color="primary" (click)="updateass()">Update</button> &nbsp;
+        <button mat-raised-button type="reset" color="accent">Reset</button> &nbsp;
+
+      </mat-card-footer>
+
+    </mat-card-content>
+  </form>
+</mat-card>

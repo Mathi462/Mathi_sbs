@@ -1,0 +1,50 @@
+
+<mat-dialog-content class="mat-typography">
+    <div >
+     <div class="card">
+       <div class="card-header">
+         Adding Product
+       </div>
+       <div class="card-body">
+         <form (ngSubmit)="onSubmit2(f2)" #f2="ngForm"   class="jumbotron">
+           <!-- <div class="form-group">
+             <div class="input-group">
+               <div class="input-group-prepend">
+                 <span class="input-group-text"><i class="fa fa-vcard"></i></span>
+               </div>
+               <input type="text" class="form-control"  name="ProductID"  placeholder="ProductID " ngModel  [(ngModel)] = "this.data.cData.ProductID">
+             </div>
+           </div> -->
+   
+           <div class="form-group">
+             <div class="input-group">
+               <div class="input-group-prepend">
+                 <span class="input-group-text"><i class="fa fa-book"></i></span>
+               </div>
+               <input type="text" class="form-control" name="ProductName" placeholder="ProductName" ngModel  [(ngModel)] = "this.data.cData.ProductName">
+             </div>
+           </div>
+
+
+           <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-book"></i></span>
+              </div>
+              <input type="text" class="form-control" name="ProductType" placeholder="ProductType" ngModel  [(ngModel)] = "this.data.cData.ProductType">
+            </div>
+          </div>
+   
+          
+   
+        
+           <div class="form-group form-actions" mat-dialog-actions>
+             <button type="submit" class="btn btn-pill btn-success" [mat-dialog-close]="this.data" >Update</button> &nbsp;
+             <button type="button" class="btn btn-pill btn-danger" (click)="onNoClick()">Cancel </button>
+           </div>
+         </form>
+       </div>
+     </div>
+   </div>
+   </mat-dialog-content>
+   

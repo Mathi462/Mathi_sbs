@@ -1,0 +1,142 @@
+
+<div class="container-fluid">
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Home</li>
+        <li class="breadcrumb-item active">Quiz</li>
+        
+    </ol>
+    <div> </div>
+    <div class="card-group">
+        <div class="card">
+            <div class="card-body text-center">
+                <h4 class="mb-0"><strong>{{qLength}}</strong></h4>
+                <small class="text-muted-light">TOTAL</small>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body text-center">
+                <h4 class="text-success mb-0"><strong>{{correct_ans}}</strong></h4>
+                <small class="text-muted-light">CORECT</small>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body text-center">
+                <h4 class="text-danger mb-0"><strong>{{wrong_ans}}</strong></h4>
+                <small class="text-muted-light">WRONG</small>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body text-center">
+                <h4 class="text-primary mb-0"><strong>{{left}}</strong></h4>
+                <small class="text-muted-light">LEFT</small>
+            </div>
+        </div>
+    </div>
+    <div [hidden]="!divHide()">
+
+        <h2>Your test is Over...........
+        </h2>
+    </div>
+    <div class="card" [hidden]="divHide()">
+
+        <div class="card-header bg-white">
+            <div class="media align-items-center">
+                <div class="media-left">
+                    <h4 class="mb-0"><strong>#</strong></h4>
+                </div>
+                <div class="media-body">
+                    <h4 class="card-title">
+                        {{getSingleQues(index).Question}}
+
+                    </h4>
+                </div>
+            </div>
+        </div>
+
+
+        <div>
+            <div class="card-body" [hidden]="!checkAnsCount()">
+
+                <div class="form-group">
+
+                    <label class="custom-control custom-checkbox mb-0">
+                        <input type="checkbox" class="custom-control-input">
+                       
+                        <mat-checkbox [checked]="!chk1" (change)="getChange1($event)" value={{getSingleQues(index).Option1}}>{{getSingleQues(index).Option1}}</mat-checkbox>
+                    </label>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="custom-control custom-checkbox mb-0">
+                        <input type="checkbox" class="custom-control-input">
+                        
+                        <mat-checkbox [checked]="!chk2" (change)="getChange2($event)" value={{getSingleQues(index).Option2}}>{{getSingleQues(index).Option2}}</mat-checkbox>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="custom-control custom-checkbox mb-0">
+                        <input type="checkbox" class="custom-control-input">
+                       
+                        <mat-checkbox [checked]="!chk3" (change)="getChange3($event)" value={{getSingleQues(index).Option3}}>{{getSingleQues(index).Option3}}</mat-checkbox>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="custom-control custom-checkbox mb-0">
+                        <input type="checkbox" class="custom-control-input">
+                        
+                        <mat-checkbox [checked]="!chk4" (change)="getChange4($event)" value={{getSingleQues(index).Option4}}>{{getSingleQues(index).Option4}}</mat-checkbox>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="custom-control custom-checkbox mb-0">
+                        <input type="checkbox" class="custom-control-input">
+                       
+                        <mat-checkbox [checked]="!chk5" (change)="getChange5($event)" value={{getSingleQues(index).Option5}}>{{getSingleQues(index).Option5}}</mat-checkbox>
+                    </label>
+                </div>
+            </div>
+            <div class="card-body" [hidden]="checkAnsCount()">
+                <div class="form-group">
+                    <input type="checkbox" class="custom-control-input">
+                   
+                    <mat-radio-group>
+                        <div class="form-group">
+                            <label class="custom-control custom-checkbox mb-0">
+                                <mat-radio-button [checked]="!chk1" (click)="getRadChange1($event)" value={{getSingleQues(index).Option1}}>{{getSingleQues(index).Option1}}</mat-radio-button><br>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="custom-control custom-checkbox mb-0">
+                                <mat-radio-button [checked]="!chk2" (change)="getRadChange2($event)" value={{getSingleQues(index).Option2}}>{{getSingleQues(index).Option2}}</mat-radio-button>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="custom-control custom-checkbox mb-0">
+                                <mat-radio-button [checked]="!chk3" (change)="getRadChange3($event)" value={{getSingleQues(index).Option3}}>{{getSingleQues(index).Option3}}</mat-radio-button>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="custom-control custom-checkbox mb-0">
+                                <mat-radio-button [checked]="!chk4" (change)="getRadChange4($event)" value={{getSingleQues(index).Option4}}>{{getSingleQues(index).Option4}}</mat-radio-button>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="custom-control custom-checkbox mb-0">
+                                <mat-radio-button [checked]="!chk5" (change)="getRadChange5($event)" value={{getSingleQues(index).Option5}}>{{getSingleQues(index).Option5}}</mat-radio-button>
+                            </label>
+                        </div>
+                    </mat-radio-group>
+                </div>
+                
+            </div>
+            <div class="card-footer">
+              
+                <a  class="btn btn-success float" [ngClass]="{disabled : submit}" (click)="Submitfunction()">Submit<i class="material-icons btn__icon--right">send</i></a>
+                <a  class="btn btn-success float-right" [ngClass]="{disabled : !submit}" (click)="buttonClicked()">Next<i class="material-icons btn__icon--right">send</i></a>
+               
+            </div>
+        </div>
+    </div>
+</div>

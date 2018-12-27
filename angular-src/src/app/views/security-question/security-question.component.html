@@ -1,0 +1,38 @@
+
+<mat-vertical-stepper #stepper>
+
+    <mat-step stepControl="newPassword">
+      <form formGroup="data">
+        <ng-template matStepLabel>Enter Your School Name</ng-template>
+        <mat-form-field >
+            <input matInput placeholder="Enter Your School Name" formControlName="firstCtrl" required>
+        </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+      </form>
+    </mat-step>
+  
+    <mat-step stepControl="reEnter">
+        <form formGroup="data">
+          <ng-template matStepLabel>Enter your favourite colour</ng-template>
+          <mat-form-field >
+              <input matInput placeholder="Enter your favourite colour" formControlName="firstCtrl" required>
+          </mat-form-field>
+              <div>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+        </form>
+    </mat-step>
+  
+    <mat-step stepControl="data">
+        <form formGroup="data" >
+          <ng-template matStepLabel>Done</ng-template>
+        </form>
+        <div class="col-2">
+            <button type="button" class="btn btn-pill btn-block btn-success active" aria-pressed="true" routerLink='/dashboard'>Success</button>
+        </div>
+    </mat-step>
+  
+  </mat-vertical-stepper>
+  

@@ -1,0 +1,34 @@
+{
+  "name": "new_admin",
+  "version": "1.0.0",
+  "description": "\"# Mathi_LMS\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mathi462/Mathi_LMS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "cors": "*",
+    "express": "*",
+    "fast-csv": "^2.4.1",
+    "jsonwebtoken": "*",
+    "mongoose": "^5.2.8",
+    "mongoose-auto-increment": "^5.0.1",
+    "multer": "^1.4.1",
+    "nodemailer": "^4.6.8",
+    "passport": "*",
+    "passport-jwt": "*"
+  },
+  "bugs": {
+    "url": "https://github.com/Mathi462/Mathi_LMS/issues"
+  },
+  "homepage": "https://github.com/Mathi462/Mathi_LMS#readme"
+}

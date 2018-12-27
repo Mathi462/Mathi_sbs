@@ -1,0 +1,225 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+        <b>Add Customer</b>
+        </div>
+        <div class="card-body">
+       <form [formGroup]="form" > 
+            <!-- <div class="form-group" [ngClass]="displayFieldCss('customerid')">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-vcard"></i></span>
+                </div>
+                <input type="text" formControlName=" " class="form-control"  placeholder="customerid" formControlName="customerid" tabindex="1">
+                <app-field-error-display [displayError]="isFieldValid('customerid')" errorMsg="Enter customerid">
+                </app-field-error-display>
+              </div>
+            </div> -->
+
+           
+            <div class="form-group">
+              <div class="input-group" [ngClass]="displayFieldCss('customerfname')">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-book"></i></span>
+                </div>
+                <input type="text" formControlName="customerfname" class="form-control" placeholder="FIRST NAME " formControlName="customerfname" tabindex="1">
+                <app-field-error-display [displayError]="isFieldValid('customerfname')" errorMsg="Enter customerfname ">
+                </app-field-error-display>
+              </div>
+            </div>
+
+            <!-- <div class="form-group">
+                <div class="input-group" [ngClass]="displayFieldCss('customerlname')">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-book"></i></span>
+                  </div>
+                  <input type="text" formControlName="customerlname" class="form-control" placeholder="LAST NAME " formControlName="customerlname" tabindex="1">
+                  <app-field-error-display [displayError]="isFieldValid('customerlname')" errorMsg="Enter customerlname ">
+                  </app-field-error-display>
+                </div>
+              </div> -->
+
+              <div class="form-group">
+                  <div class="input-group" [ngClass]="displayFieldCss('customerphno')">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-book"></i></span>
+                    </div>
+                    <input type="text" formControlName="customerphno" class="form-control" placeholder="MOBILE NO " formControlName="customerphno" tabindex="1">
+                    <app-field-error-display [displayError]="isFieldValid('customerphno')" errorMsg="Enter customerphno ">
+                    </app-field-error-display>
+                  </div>
+                </div>
+                <!-- <div class="form-group">
+                    <div class="input-group" [ngClass]="displayFieldCss('dob')">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-book"></i></span>
+                      </div> -->
+                    <!-- <input type="text" formControlName="Date" class="form-control" placeholder="Date " formControlName="Date" tabindex="1"> -->
+      
+                    <!-- <mat-form-field> -->
+                      <!-- <input matInput formControlName="dob" class="form-control" [matDatepicker]="picker" placeholder="     DOB" formControlName="dob">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker> -->
+                    <!-- </mat-form-field> -->
+                      <!-- <app-field-error-display [displayError]="isFieldValid('dob')" errorMsg="Enter dob ">
+                      </app-field-error-display>
+                    </div>
+                  </div> -->
+
+
+                  <div class="form-group">
+                      <div class="input-group" [ngClass]="displayFieldCss('customeremail')">
+                        <div class="input-group-prepend">
+                          <span class="input-group-email"><i class="fa fa-book"></i></span>
+                        </div>
+                        <input type="email" formControlName="customeremail" class="form-control" placeholder="ADDRESS " formControlName="customeremail" tabindex="1">
+                        <app-field-error-display [displayError]="isFieldValid('customeremail')" errorMsg="Enter customeremail ">
+                        </app-field-error-display>
+                      </div>
+                    </div>
+
+            <div class="form-group form-actions">
+              <button type="submit" (click)="onSubmit()" class="btn btn-pill btn-success">Submit</button> &nbsp;
+              <button type="reset" class="btn btn-pill btn-danger">Reset </button>
+            </div>
+
+          </form> 
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="col-sm-8">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Display Curriculum
+        </div>
+        <div class="card-body">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th>Curriculum ID</th>
+                <th>Curriculum Name</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let dis of display1">
+               
+                <td>{{dis.cid}}</td>
+                <td>{{dis.curriculumName}}</td>
+                <td>
+
+                  <button mat-icon-button (click)="openDialog(dis)" color="primary">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+
+                </td>
+                <td>
+                  <button mat-icon-button color="warn" (click)="deleteCurriculum(dis._id)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="onPageChanged($event)">
+          </mat-paginator>
+        </div>
+      </div>
+    </div> -->
+
+
+    <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header">
+            <i class="fa fa-align-justify"></i> <strong> Display Customer</strong>
+      
+            <mat-form-field style="float :right;width: 200px;">
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+            </mat-form-field>
+          </div>
+          <div>
+      
+      
+            <div class="mat-elevation-z8">
+              <table mat-table style="width: 100%;" [dataSource]="dataSource" matSort>
+      
+               
+               <!-- <ng-container matColumnDef="customerid">
+                   <th mat-header-cell *matHeaderCellDef mat-sort-header> customerid </th>
+                  <td mat-cell *matCellDef="let row"> {{row.customerid}} </td>
+                </ng-container> -->
+      
+               
+                <ng-container matColumnDef="customerfname">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> customerfname  </th>
+                  <td mat-cell *matCellDef="let row"> {{row.customerfname}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="customerlname">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> customerlname  </th>
+                    <td mat-cell *matCellDef="let row"> {{row.customerlname}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="customerphno">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> customerphno  </th>
+                      <td mat-cell *matCellDef="let row"> {{row.customerphno}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dob">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> dob  </th>
+                        <td mat-cell *matCellDef="let row"> {{row.dob}} </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="customeremail">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header> customeremail  </th>
+                          <td mat-cell *matCellDef="let row"> {{row.customeremail}} </td>
+                        </ng-container>
+
+
+                <ng-container matColumnDef="edit">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Edit </th>
+                  <td mat-cell *matCellDef="let row">
+                    <button mat-icon-button color="primary" (click)="openDialog(row)">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>
+      
+                <ng-container matColumnDef="delete">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Delete </th>
+                  <td mat-cell *matCellDef="let row">
+                    <button mat-icon-button color="warn" (click)="deleteCustomer(row._id)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>
+      
+      
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                </tr>
+              </table>
+      
+              <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </div>
+      
+      
+      
+          </div>
+      
+      
+      
+      
+        </div>
+      </div>
+  </div>
+</div>
+
+
+
+

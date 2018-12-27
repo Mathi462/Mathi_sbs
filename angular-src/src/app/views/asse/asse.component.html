@@ -1,0 +1,464 @@
+<div class="animated fadeIn">
+
+  <div class="row">
+
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <b>Add Accessories</b>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="form">
+            <!-- <div class="row"> -->
+            <div class="row">
+
+
+
+              <!-- <div class="col-sm-4" style="padding-bottom: 7px; padding-top:7px;">
+                <mat-form-field appearance="outline">
+                  <mat-select style="color:black" formControlName="branch" placeholder="branch">
+                    <option selected>BRANCH</option>
+                    <mat-option value="{{cat.bnmae}}" *ngFor="let cat of this.branch">
+                      {{cat.bname}}
+                    </mat-option>
+
+                  </mat-select>
+                </mat-form-field>
+              </div> -->
+
+
+
+              <div class="col-sm-4" style="padding-bottom: 7px; padding-top:7px;">
+                  <mat-form-field appearance="outline">
+                    <mat-select style="color:black" placeholder="BRANCH" formControlName="branch">
+                      <option selected>Branch</option>
+                      <mat-option value="{{cat.bname}}" *ngFor="let cat of this.branch">
+                        {{cat.bname}}
+                      </mat-option>
+  
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+
+              <div class="col-sm-4" style="padding-bottom: 7px; padding-top:7px;">
+                <mat-form-field appearance="outline">
+                  <mat-select style="color:black" placeholder="BRAND" formControlName="brand_name">
+                    <option selected>BRAND NAME</option>
+                    <mat-option value="{{cat.BrandName}}" *ngFor="let cat of this.brand_name">
+                      {{cat.BrandName}}
+                    </mat-option>
+
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+
+              <!-- <div class="col-sm-4" style="padding-bottom: 7px; padding-top:7px;">
+                <mat-form-field appearance="outline">
+                  <mat-select style="color:black" placeholder="MODEL NAME" formControlName="model_name">
+                    <option selected>MODEL NAME</option>
+                    <mat-option value="{{cat.ModelName}}" *ngFor="let cat of this.model_name">
+                      {{cat.ModelName}}
+                    </mat-option>
+
+                  </mat-select>
+                </mat-form-field>
+              </div> -->
+
+
+
+
+              <div class="col-sm-4" style="padding-bottom: 7px; padding-top:7px;width: 335px;">
+                <mat-form-field appearance="outline">
+                  <mat-select style="color:black" placeholder="CATEGORY" formControlName="category_type">
+                    <option selected>Category Type</option>
+                    <mat-option value="{{cat.CategoryType}}" *ngFor="let cat of this.category_type">
+                      {{cat.CategoryType}}
+                    </mat-option>
+
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="col-sm-4" style="padding-bottom: 3px; padding-left:30px;">
+                <!-- <mat-form-field appearance="outline"> -->
+                <input style="color:black" type="text" formControlName="model_name" class="form-control" placeholder="Product Name "
+                  formControlName="model_name" tabindex="1" style="padding-left: 5px;height: 37.988636px;width: 196.98863599999999px;">
+
+
+              </div>
+
+
+              <div class="col-sm-4" style="padding-bottom: 3px; padding-top:0px;">
+                <!-- <mat-form-field appearance="outline"> -->
+                <input style="color:black" type="text" formControlName="quantity" class="form-control" placeholder="QUANTITY "
+                  formControlName="quantity" tabindex="1" style="padding-left: 5px;height: 37.988636px;width: 196.98863599999999px;">
+
+
+              </div>
+            </div>
+
+
+            <div class="card" style="background-color:rgba(8, 8, 8, 0.164);margin-bottom: 0px; ">
+              <!-- <mat-card-title style="text-align: center;">Add Product Details</mat-card-title> -->
+
+              <!-- <mat-card-content> -->
+              <form class="card-content" [formGroup]="params" (ngSubmit)="saveBill()">
+
+                <table style="width: 10px;" class="table table-striped table-bordered" style="background-color:#ffffff00;">
+                  <thead>
+                    <tr>
+                      <!-- <th>Barcode </th> -->
+                      <!-- <th>Product</th> -->
+                      <th>BARCODE</th>
+                      <th>BATTERY NO</th>
+                      <th>COLOUR</th>
+                      <th>OTHERS NO</th>
+                      <th>TYPE</th>
+                      <th>ACTION</th>
+
+                    </tr>
+                  </thead>
+                  <tbody formArrayName="prod" *ngFor="let unit of params.controls.prod.controls; let i=index">
+
+                    <tr [formGroupName]="i">
+                      <!-- <td>
+                      <input class="form-control" style="width:50px; height: 25px;" type="text" />
+                    </td> -->
+                      <!-- <td>
+                      <input class="form-control" style="width:100px;height: 25px;" type="text" />
+                    </td> -->
+
+                      <td>
+                        <input class="form-control" formControlName="add_barcode" style="width:130px; height: 25px;"
+                          type="text" />
+                      </td>
+                      <td>
+                        <input class="form-control" formControlName="battery_no" style="width:120px; height: 25px;"
+                          type="text" />
+                      </td>
+                      <td>
+                        <mat-select class="form-control" formControlName="color" style="width:120px; height: 25px;;padding-bottom: 7px;padding-top: 5px;"
+                          placeholder="SELECT">
+                          <option value="" disabled selected>SELECT</option>
+                          <mat-option value="{{cat.ColourName}}" *ngFor="let cat of this.color">
+                            {{cat.ColourName}}
+                          </mat-option>
+                        </mat-select>
+                      </td>
+                      <td>
+                        <input class="form-control" formControlName="otherno" style="width:120px; height: 25px;" type="text" />
+                      </td>
+                      <td>
+                        <input class="form-control" formControlName="typeon" style="width:120px; height: 25px;" type="text" />
+                      </td>
+                      <td>
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-sm-1">
+                              <!-- <button mat-raised-button class="btn btn-default" type="button" (click)="addProd()">Add </button> -->
+                              <!-- <button mat-icon-button color="warn" > -->
+                              <mat-icon (click)="addProd()">playlist_add</mat-icon>
+                              <!-- </button> -->
+                            </div>
+                            <div class="col-sm-1">
+
+                              <!-- <button mat-raised-button *ngIf="params.controls.prod.controls.length > 1" (click)="deleteFieldValue(i)" 
+                                        class="btn btn-default" type="button">Delete</button>  -->
+                              <mat-icon *ngIf="params.controls.prod.controls.length > 1" (click)="deleteFieldValue(i)">delete_forever</mat-icon>
+                            </div>
+
+
+                          </div>
+
+                        </div>
+
+                      </td>
+                    </tr>
+
+
+
+                  </tbody>
+
+                </table>
+
+              </form>
+              <!-- </mat-card-content> -->
+
+
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-3" style="padding-bottom: 3px; padding-top:0px;">
+                <!-- <mat-form-field appearance="outline"> -->
+                <input style="color:black" type="text" formControlName="dp" class="form-control" placeholder="DP "
+                  formControlName="dp" tabindex="1" style="padding-left: 5px;height: 37.988636px;width: 196.98863599999999px;">
+              </div>
+
+              <div class="col-sm-3" style="padding-bottom: 3px; padding-top:0px;">
+                <!-- <mat-form-field appearance="outline"> -->
+                <input style="color:black" type="text" formControlName="lp" class="form-control" placeholder="LP "
+                  formControlName="lp" tabindex="1" style="padding-left: 5px;height: 37.988636px;width: 196.98863599999999px;">
+              </div>
+
+              <div class="col-sm-3" style="padding-bottom: 3px; padding-top:0px;">
+                <!-- <mat-form-field appearance="outline"> -->
+                <input style="color:black" type="text" formControlName="sp" class="form-control" placeholder="SP "
+                  formControlName="sp" tabindex="1" style="padding-left: 5px;height: 37.988636px;width: 196.98863599999999px;">
+              </div>
+
+              <div class="col-sm-3" style="padding-bottom: 3px; padding-top:0px;">
+                <!-- <mat-form-field appearance="outline"> -->
+                <input style="color:black" type="text" formControlName="cp" class="form-control" placeholder="CP "
+                  formControlName="cp" tabindex="1" style="padding-left: 5px;height: 37.988636px;width: 196.98863599999999px;">
+              </div>
+
+              <div class="col-sm-3" style="padding-bottom: 7px; padding-top:7px;">
+                <mat-form-field appearance="outline">
+                  <mat-select style="color:black" placeholder="CGST" formControlName="cgst">
+                    <option selected>CGST</option>
+                    <mat-option value="{{cat.CGST}}" *ngFor="let cat of this.cgst">
+                      {{cat.CGST}}
+                    </mat-option>
+
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="col-sm-3" style="padding-bottom: 7px; padding-top:7px;">
+                <mat-form-field appearance="outline">
+                  <mat-select style="color:black" placeholder="SGST" formControlName="sgst">
+                    <option selected>SGST</option>
+                    <mat-option value="{{cat.SGST}}" *ngFor="let cat of this.sgst">
+                      {{cat.SGST}}
+                    </mat-option>
+
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+
+              <div class="col-sm-3" style="padding-bottom: 7px; padding-top:7px;">
+                <mat-form-field appearance="outline">
+                  <mat-select style="color:black" placeholder="STATUS" formControlName="stock_status">
+                    <mat-option value="Select">Select</mat-option>
+                    <mat-option value="Available">Available</mat-option>
+                    <mat-option value="UnAvailable">UnAvailable</mat-option>
+
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="col-sm-3" style="padding-bottom: 3px; padding-top:10px;">
+                <!-- <mat-form-field appearance="outline"> -->
+                <input style="color:black" type="text" formControlName="remarks" class="form-control" placeholder="REMARKS "
+                  formControlName="remarks" tabindex="1" style="padding-left: 5px;height: 37.988636px;width: 196.98863599999999px;">
+              </div>
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+            <br>
+
+            <div class="form-group form-actions">
+              <button type="submit" (click)="asseRegister()" class="btn btn-pill btn-success">Submit</button> &nbsp;
+              <button type="reset" class="btn btn-pill btn-danger">Reset </button>
+            </div>
+            <!-- </div> -->
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <div class="col-sm-8">
+            <div class="card">
+              <div class="card-header">
+                <i class="fa fa-align-justify"></i> Display Curriculum
+              </div>
+              <div class="card-body">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th>Curriculum ID</th>
+                      <th>Curriculum Name</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let dis of display1">
+                     
+                      <td>{{dis.cid}}</td>
+                      <td>{{dis.curriculumName}}</td>
+                      <td>
+      
+                        <button mat-icon-button (click)="openDialog(dis)" color="primary">
+                          <mat-icon>edit</mat-icon>
+                        </button>
+      
+                      </td>
+                      <td>
+                        <button mat-icon-button color="warn" (click)="deleteCurriculum(dis._id)">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+      
+                <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="onPageChanged($event)">
+                </mat-paginator>
+              </div>
+            </div>
+          </div> -->
+
+
+  <!-- <div class="col-lg-12">
+              <div class="card">
+                <div class="card-header">
+                  <i class="fa fa-align-justify"></i> <strong> Display Category</strong>
+            
+                  <mat-form-field style="float :right;width: 200px;">
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                  </mat-form-field>
+                </div>
+                <div>
+            
+            
+                  <div class="mat-elevation-z8">
+                    <table mat-table style="width: 100%;" [dataSource]="dataSource" matSort>
+            
+                     
+                      <ng-container matColumnDef="CategoryID">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> CategoryID </th>
+                        <td mat-cell *matCellDef="let row"> {{row.CategoryID}} </td>
+                      </ng-container>
+            
+                     
+                      <ng-container matColumnDef="CategoryType">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> CategoryType  </th>
+                        <td mat-cell *matCellDef="let row"> {{row.CategoryType}} </td>
+                      </ng-container>
+      
+                      <ng-container matColumnDef="Date">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date  </th>
+                        <td mat-cell *matCellDef="let row"> {{row.Date}} </td>
+                      </ng-container>
+      
+            
+                        
+            
+                      <ng-container matColumnDef="edit">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Edit </th>
+                        <td mat-cell *matCellDef="let row">
+                          <button mat-icon-button color="primary" (click)="openDialog(row)">
+                            <mat-icon>edit</mat-icon>
+                          </button>
+                        </td>
+                      </ng-container>
+            
+                      <ng-container matColumnDef="delete">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Delete </th>
+                        <td mat-cell *matCellDef="let row">
+                          <button mat-icon-button color="warn" (click)="deleteCategory(row._id)">
+                            <mat-icon>delete</mat-icon>
+                          </button>
+                        </td>
+                      </ng-container>
+            
+            
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                      </tr>
+                    </table>
+            
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                  </div>
+            
+            
+            
+                </div>
+            
+            
+            
+            
+              </div>
+            </div>
+        </div>
+      </div>-->
+
+
+  <!-- 
+    <div class="animated fadeIn">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-header">
+              <i class="fa fa-align-justify"></i> Display Student Details
+            </div>
+            <div class="card-body">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Student Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Address</th>
+                    <th>Curriulum</th>
+                    <th>Grade</th>
+                    <th>Subject</th>
+                    <th>Faculty Name</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let dis of display1">
+                   
+                    <td>{{dis.username}}</td>
+                    <td>{{dis.email}}</td>
+                    <td>{{dis.mobile}}</td>
+                    <td>{{dis.address}}</td>
+                    <td>{{dis.curriculum}}</td>
+                    <td>{{dis.grade}}</td>
+                    <td>{{dis.subjects}}</td>
+                    <td>{{dis.faculty_name}}</td>
+                    <td>
+                      <button mat-icon-button (click)="openDialog(dis)" color="primary">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                    </td>
+                    <td>
+                      <button mat-icon-button color="warn" (click)="deleteStudent(dis._id)">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="onPageChanged($event)"></mat-paginator>
+    
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+
+
+</div>

@@ -1,0 +1,99 @@
+<mat-dialog-content class="mat-typography">
+  <div>
+    <div class="card">
+      <div class="card-header">
+        Edit Shop Manager
+      </div>
+
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit2(f2)" #f2="ngForm" class="jumbotron">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-vcard"></i></span>
+              </div>
+              <input type="text" class="form-control" name="id" placeholder="ID" ngModel [(ngModel)]="this.data.cData.id">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-id-badge"></i></span>
+              </div>
+              <input type="text" class="form-control" name="name" placeholder="Name" ngModel [(ngModel)]="this.data.cData.name">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-id-badge"></i></span>
+              </div>
+              <input type="text" class="form-control" name="dob" placeholder="dob" ngModel [(ngModel)]="this.data.cData.dob">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-at"></i></span>
+              </div>
+              <input type="text" class="form-control" name="email" placeholder="Email" ngModel [(ngModel)]="this.data.cData.email">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-id-badge"></i></span>
+              </div>
+              <input type="text" class="form-control" name="phone" placeholder="phone" ngModel [(ngModel)]="this.data.cData.phone">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-address-book-o"></i></span>
+              </div>
+              <textarea type="text" class="form-control" name="address" placeholder="Address" ngModel [(ngModel)]="this.data.cData.address"></textarea>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-file-text-o"></i></span>
+              </div>
+              <input type="text" class="form-control" name="pancard" placeholder="pancard" ngModel [(ngModel)]="this.data.cData.pancard">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-file-text-o"></i></span>
+              </div>
+              <input type="text" class="form-control" name="aadhaarcard" placeholder="aadhaarcard" ngModel [(ngModel)]="this.data.cData.aadhaarcard">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-file-text-o"></i></span>
+              </div>
+              <input type="text" class="form-control" name="driving_license" placeholder="driving_license" ngModel [(ngModel)]="this.data.cData.driving_license">
+            </div>
+          </div>
+
+          <div class="form-group form-actions" mat-dialog-actions>
+            <button type="submit" class="btn btn-pill btn-success" [mat-dialog-close]="this.data">Update</button>
+            &nbsp;
+            <button type="button" class="btn btn-pill btn-danger" (click)="onNoClick()">Cancel </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</mat-dialog-content>

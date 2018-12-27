@@ -1,0 +1,538 @@
+<!-- <div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <b> Add Shopmanager</b>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="form">
+            <div class="row">
+              <div class="col-sm-6">
+
+                <div class="form-group">
+
+                  <mat-form-field style="width:100%; height:10%; " appearance="outline">
+                    <mat-select placeholder="Map Shopowner to Branch" formControlName="shopownerid">
+                      <mat-option *ngFor="let owner of shopowner" [value]="owner.firstname">
+                        {{owner.firstname}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error> Select Shop Owner</mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="form-group">
+                  <mat-form-field style="width:100%;" appearance="outline">
+                    <mat-select placeholder="Map Shopowner to Branch" formControlName="branchname">
+                      <mat-option *ngFor="let owner of bname1" [value]="owner.bname">
+                        {{owner.bname}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error> Select Shop Branch</mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="form-group" [ngClass]="displayFieldCss('firstname')">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-vcard"></i></span>
+                    </div>
+                    <input type="text" formControlName="firstname" class="form-control" placeholder="FIRST NAME"
+                      formControlName="firstname" tabindex="1">
+                    <app-field-error-display [displayError]="isFieldValid('firstname')" errorMsg="Enter firstname">
+                    </app-field-error-display>
+                  </div>
+                </div>
+
+                <div class="form-group" [ngClass]="displayFieldCss('lastname')">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-vcard"></i></span>
+                    </div>
+                    <input type="text" formControlName="lastname" class="form-control" placeholder="LAST NAME"
+                      formControlName="lastname" tabindex="1">
+                    <app-field-error-display [displayError]="isFieldValid('lastname')" errorMsg="Enter lastname">
+                    </app-field-error-display>
+                  </div>
+                </div>
+
+
+                <div class="form-group" [ngClass]="displayFieldCss('emptype')">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-vcard"></i></span>
+                    </div>
+                    <select class="form-control" placeholder="EmpType" formControlName="emptype">
+
+                      <option value="Part-time">Part-time</option>
+                      <option value="Permanent">Permanent</option>
+                      <option value="Temporary">Temporary</option>
+
+                    </select>
+                    <app-field-error-display [displayError]="isFieldValid('emptype')" errorMsg="Enter emptype">
+                    </app-field-error-display>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group" [ngClass]="displayFieldCss('dob')">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-book"></i></span>
+                    </div>
+
+                    <input matInput formControlName="dob" class="form-control" [matDatepicker]="picker" placeholder="DOB"
+                      formControlName="dob">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+
+                  </div>
+                </div>
+
+                <div class="form-group" [ngClass]="displayFieldCss('age')">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-vcard"></i></span>
+                    </div>
+                    <input type="text" formControlName="age" class="form-control" placeholder="AGE" formControlName="age"
+                      tabindex="1">
+                    <app-field-error-display [displayError]="isFieldValid('age')" errorMsg="Enter age">
+                    </app-field-error-display>
+                  </div>
+                </div>
+
+                <div class="form-group" [ngClass]="displayFieldCss('phone')">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-vcard"></i></span>
+                    </div>
+                    <input type="text" formControlName="phone" class="form-control" placeholder="MOBILE"
+                      formControlName="phone" tabindex="1">
+                    <app-field-error-display [displayError]="isFieldValid('phone')" errorMsg="Enter phone">
+                    </app-field-error-display>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="col-sm-6">
+
+                <div class="form-group" [ngClass]="displayFieldCss('email')">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-vcard"></i></span>
+                    </div>
+                    <input type="email" formControlName="email" class="form-control" placeholder="EMAIL"
+                      formControlName="email" tabindex="1">
+                    <app-field-error-display [displayError]="isFieldValid('email')" errorMsg="Enter email">
+                    </app-field-error-display>
+                  </div>
+                </div>
+
+
+
+
+                <div class="form-group" [ngClass]="displayFieldCss('pancard')">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-vcard"></i></span>
+                    </div>
+                    <input type="text" formControlName="pancard" class="form-control" placeholder="PANCARD"
+                      formControlName="pancard" tabindex="1">
+                    <app-field-error-display [displayError]="isFieldValid('pancard')" errorMsg="Enter pancard">
+                    </app-field-error-display>
+                  </div>
+                </div>
+
+                <div class="form-group" [ngClass]="displayFieldCss('aadhaarcard')">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-vcard"></i></span>
+                    </div>
+                    <input type="text" formControlName="aadhaarcard" class="form-control" placeholder="AADHAR CARD"
+                      formControlName="aadhaarcard" tabindex="1">
+                    <app-field-error-display [displayError]="isFieldValid('aadhaarcard')" errorMsg="Enter aadhaarcard">
+                    </app-field-error-display>
+                  </div>
+                </div>
+
+                <div class="form-group" [ngClass]="displayFieldCss('driving_license')">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-vcard"></i></span>
+                    </div>
+                    <input type="text" formControlName="driving_license" class="form-control" placeholder="DRIVING LICENSE"
+                      formControlName="driving_license" tabindex="1">
+                    <app-field-error-display [displayError]="isFieldValid('driving_license')" errorMsg="Enter driving_license">
+                    </app-field-error-display>
+                  </div>
+                </div>
+
+                <div class="form-group" [ngClass]="displayFieldCss('previous_employment')">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-vcard"></i></span>
+                    </div>
+                    <input type="text" formControlName="previous_employment" class="form-control" placeholder="PREVIOUS EMPLOYMENT"
+                      formControlName="previous_employment" tabindex="1">
+                    <app-field-error-display [displayError]="isFieldValid('previous_employment')" errorMsg="Enter previous_employment">
+                    </app-field-error-display>
+                  </div>
+                </div>
+
+                <div class="form-group" [ngClass]="displayFieldCss('previous_employment_address')">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-vcard"></i></span>
+                    </div>
+                    <input type="text" formControlName="previous_employment_address" class="form-control" placeholder="PREVIOUS EMPLOYEMENT ADDRESS"
+                      formControlName="previous_employment_address" tabindex="1">
+                    <app-field-error-display [displayError]="isFieldValid('previous_employment_address')" errorMsg="Enter previous_employment_address">
+                    </app-field-error-display>
+                  </div>
+                </div>
+
+                <div class="form-group" [ngClass]="displayFieldCss('previous_employment_mobile')">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-vcard"></i></span>
+                    </div>
+                    <input type="text" formControlName="previous_employment_mobile" class="form-control" placeholder="PREVIOUS EMPLOYMENT MOBILE"
+                      formControlName="previous_employment_mobile" tabindex="1">
+                    <app-field-error-display [displayError]="isFieldValid('previous_employment_mobile')" errorMsg="Enter previous_employment_mobile">
+                    </app-field-error-display>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+              </div>
+
+
+
+
+
+
+              <div class="form-group form-actions">
+                <button type="submit" (click)="onSubmit()" class="btn btn-pill btn-success">Submit</button> &nbsp;
+                <button type="reset" class="btn btn-pill btn-danger">Reset </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+
+          <i class="fa fa-align-justify"></i> <strong> Display Shopmanager</strong>
+
+          <mat-form-field style="float :right;width: 200px;">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          </mat-form-field>
+        </div>
+        <div>
+
+
+          <div class="mat-elevation-z8">
+            <table mat-table style="width: 100%;" [dataSource]="dataSource" matSort>
+
+
+              <ng-container matColumnDef="firstname">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> firstname </th>
+                <td mat-cell *matCellDef="let row"> {{row.firstname}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="lastname">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> lastname </th>
+                <td mat-cell *matCellDef="let row"> {{row.lastname}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="emptype">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> emptype </th>
+                <td mat-cell *matCellDef="let row"> {{row.emptype}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="dob">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> dob </th>
+                <td mat-cell *matCellDef="let row"> {{row.dob}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="age">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> age </th>
+                <td mat-cell *matCellDef="let row"> {{row.age}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="phone">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> phone </th>
+                <td mat-cell *matCellDef="let row"> {{row.phone}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="branchname">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> branchname </th>
+                <td mat-cell *matCellDef="let row"> {{row.branchname}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="shopownerid">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> shopownerid </th>
+                <td mat-cell *matCellDef="let row"> {{row.shopownerid}} </td>
+              </ng-container>
+
+
+
+
+              <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Edit </th>
+                <td mat-cell *matCellDef="let row">
+                  <button mat-icon-button color="primary" (click)="openDialog(row)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Delete </th>
+                <td mat-cell *matCellDef="let row">
+                  <button mat-icon-button color="warn" (click)="deleteSalesperson(row._id)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+              </tr>
+
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+          </div>
+
+
+
+        </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<mat-card>
+  <form [formGroup]="form">
+  <div class="container">
+    <mat-card-title style="text-align:center"><strong> Add Shopmanager </strong> </mat-card-title>
+
+    <mat-card-content>
+      <div class="row">
+        <div class="col-sm-6">
+          <mat-form-field style="width:100%;">
+            <mat-select placeholder="Map Shopowner to Branch" formControlName="shopownerid">
+              <mat-option *ngFor="let owner of shopowner" [value]="owner.firstname">
+                {{owner.firstname}}
+              </mat-option>
+            </mat-select>
+            <mat-error> Select Shop Owner</mat-error>
+          </mat-form-field>
+
+          <mat-form-field style="width:100%">
+            <input matInput formControlName="firstname" placeholder="Enter First Name">
+          </mat-form-field>
+
+          <mat-form-field style="width:100%">
+            <input matInput formControlName="dob" [matDatepicker]="picker1" placeholder="DOB" formControlName="dob">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field style="width:100%">
+            <input matInput formControlName="email"  type="email" placeholder="Enter Email Id">
+          </mat-form-field>
+          <mat-form-field style="width:100%">
+              <input matInput formControlName="phone"  type="email" placeholder="Enter Phone">
+            </mat-form-field>
+          <mat-form-field style="width:100%">
+            <input matInput formControlName="aadhaarcard"  type="text" placeholder="Enter Aadhar Card Id">
+          </mat-form-field>
+
+          <mat-form-field style="width:100%">
+            <input matInput formControlName="pancard"  type="text" placeholder="Enter PAN Card Id">
+          </mat-form-field>
+
+
+
+          <mat-form-field style="width:100%">
+            <textarea matInput type="text"  formControlName="previous_employment_address" placeholder="Enter Previous Employment Address"></textarea>
+          </mat-form-field>
+        </div>
+
+
+
+        <div class="col-sm-6">
+          <mat-form-field style="width:100%;">
+            <mat-select placeholder="Map Shopowner to Branch" formControlName="branchname">
+              <mat-option *ngFor="let owner of bname1" [value]="owner.bname">
+                {{owner.bname}}
+              </mat-option>
+            </mat-select>
+            <mat-error> Select Shop Branch</mat-error>
+          </mat-form-field>
+
+          <mat-form-field style="width:100%">
+            <input matInput formControlName="lastname"  placeholder="Enter Last Name">
+          </mat-form-field>
+
+          <mat-form-field style="width:100%">
+            <input matInput  formControlName="age" placeholder="Enter the Age">
+          </mat-form-field>
+
+          <mat-form-field style="width:100%">
+            <mat-select formControlName="emptype"  placeholder="Select Shopmanager Type">
+              <mat-option value="Part-time"> Part-time </mat-option>
+              <mat-option value="Permanent"> Permanent </mat-option>
+              <mat-option value="Temporary"> Temporary </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field style="width:100%">
+            <input matInput formControlName="driving_license"  type="text" placeholder="Enter Driving Licence Id">
+          </mat-form-field>
+
+          <mat-form-field style="width:100%">
+            <input matInput formControlName="previous_employment"  type="text" placeholder="Enter Previous Employment">
+          </mat-form-field>
+
+          <mat-form-field style="width:100%">
+            <input matInput formControlName="previous_employment_mobile"  type="text" placeholder="Enter Previous Employment Mobile">
+          </mat-form-field>
+
+
+        </div>
+      </div>
+
+    </mat-card-content>
+    <mat-card-footer style="height: 50px;">
+
+      <div class="mt-4">
+
+        <button class="ml-2" style="float: Right;" type="reset" color=primary  mat-raised-button>
+          Reset
+        </button>
+        <button class="ml-3" style="float: Right;"  (click)="onSubmit()" color="accent" mat-raised-button>
+          Submit
+        </button>
+
+
+      </div>
+    </mat-card-footer>
+
+
+  </div>
+</form>
+</mat-card>
+<br>
+
+<mat-card>
+    <table mat-table style="width: 100%;" [dataSource]="dataSource" matSort>
+
+
+        <ng-container matColumnDef="firstname">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> firstname </th>
+          <td mat-cell *matCellDef="let row"> {{row.firstname}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastname">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> lastname </th>
+          <td mat-cell *matCellDef="let row"> {{row.lastname}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="emptype">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> emptype </th>
+          <td mat-cell *matCellDef="let row"> {{row.emptype}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dob">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> dob </th>
+          <td mat-cell *matCellDef="let row"> {{row.dob}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="age">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> age </th>
+          <td mat-cell *matCellDef="let row"> {{row.age}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> phone </th>
+          <td mat-cell *matCellDef="let row"> {{row.phone}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="branchname">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> branchname </th>
+          <td mat-cell *matCellDef="let row"> {{row.branchname}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="shopownerid">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> shopownerid </th>
+          <td mat-cell *matCellDef="let row"> {{row.shopownerid}} </td>
+        </ng-container>
+
+
+
+
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Edit </th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-icon-button color="primary" (click)="openDialog(row)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Delete </th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-icon-button color="warn" (click)="deleteSalesperson(row._id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</mat-card>

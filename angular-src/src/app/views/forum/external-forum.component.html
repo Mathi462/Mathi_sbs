@@ -1,0 +1,67 @@
+<!--
+<ul><li *ngFor="let message of messages">{{message}}</li></ul>
+
+
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput #newMessage
+      (keyup.enter)="addMessage(newMessage.value)"
+      (blur)="addMessage(newMessage.value); newMessage.value='' ">
+    </mat-form-field>
+
+    <button mat-button (click)="addMessage(newMessage.value)" color="accent">Send</button>
+</form> -->
+
+
+<!-- <ul>
+
+  <div >
+      <a  class="box3 sb13" *ngFor="let message of messages" [class.right]="message.self">{{message.mesg}}</a>
+  </div>
+</ul> -->
+
+<mat-list >
+    <mat-list-item  class="box3 sb13"  *ngFor="let message of messages" >
+      <br>
+        <a  [class.right]="message.self">{{ message.mesg }} </a>
+    </mat-list-item>
+ </mat-list>
+
+
+  <!-- <div class="speech-bubble">
+      <div class="arrow bottom right"></div>
+      Thinking....
+    </div> -->
+
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <div class="send-message row">
+    <mat-form-field>
+      <div>
+        <input matInput type="text" name="mesg" placeholder="Type Your Message" ngModel>
+      </div>
+    </mat-form-field>
+
+    <div>
+      <button mat-button type="submit" color="accent" float-right>Send</button>
+    </div>
+
+  </div>
+
+</form>
+
+<br><br><br><br><br><br>
+
+<div class="speech-bubble">
+    <div ></div>
+    Thinking....
+  </div>
+
+  <div class="box3 sb13">I'm speech bubble</div>
+  <div class="box3 sb14">I'm speech bubble</div>
+
+
+<!-- <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="jumbotron">
+  <input type="text" class="form-control"  name="cid" placeholder="Enter Msg" ngModel>
+
+  <button mat-button type="submit" color="accent">Send</button>
+</form> -->

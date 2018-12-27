@@ -1,0 +1,104 @@
+
+  <div class="row ">
+      <div class="col-sm-8">
+        <div class="card">
+          <div class="card-header">
+            Adding Shop Manager
+          </div>
+          <div class="card-body">
+              <form  class="form-horizontal" [formGroup]="form">
+              
+                <div class="form-group" [ngClass]="displayFieldCss('id')">
+                  <input type="text" id="id" class="form-control input-lg" placeholder="Id" tabindex="3" formControlName="id">
+                  <app-field-error-display [displayError]="isFieldValid('id')" errorMsg="Please Enter ID">
+                  </app-field-error-display>
+                </div>
+
+              <div class="form-group" [ngClass]="displayFieldCss('name')">
+                <input type="text" id="name" class="form-control input-lg" placeholder="Name" tabindex="3" formControlName="name">
+                <app-field-error-display [displayError]="isFieldValid('name')" errorMsg="Please Enter name">
+                </app-field-error-display>
+              </div>
+
+              <div class="form-group" [ngClass]="displayFieldCss('dob')">
+                <input type="text" id="dob" class="form-control input-lg" placeholder="dob" tabindex="3" formControlName="dob">
+                <app-field-error-display [displayError]="isFieldValid('dob')" errorMsg="Please Enter dob">
+                </app-field-error-display>
+              </div>
+
+              <div class="form-group" [ngClass]="displayFieldCss('email')">
+                <input type="email" id="email"  class="form-control input-lg" placeholder="Email Address" tabindex="4" formControlName="email">
+                <app-field-error-display [displayError]="isFieldValid('email')" errorMsg="Please Enter valied email">
+                </app-field-error-display>
+              </div>
+
+
+              <div class="form-group" [ngClass]="displayFieldCss('password')">
+                <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5" formControlName="password">
+                <app-field-error-display [displayError]="isFieldValid('password')" errorMsg="Please Enter password">
+                </app-field-error-display>
+              </div>
+
+              <div class="form-group" [ngClass]="displayFieldCss('phone')">
+                <input type="text" id="phone" class="form-control input-lg" placeholder="phone Number"  tabindex="7" formControlName="phone">
+                <app-field-error-display [displayError]="isFieldValid('phone')" errorMsg="Please Enter valied phone Number">
+                </app-field-error-display>
+              </div>
+
+              <div class="form-group" [ngClass]="displayFieldCss('address')">
+                <textarea row="5"  type="text" id="address" class="form-control input-lg" placeholder="Address"   tabindex="6" formControlName="address"></textarea>
+                <app-field-error-display [displayError]="isFieldValid('address')" errorMsg="Please Enter address">
+                </app-field-error-display>
+              </div>
+
+              <div class="form-group" [ngClass]="displayFieldCss('pancard')">
+                <input type="text" id="pancard" class="form-control input-lg" placeholder="pancard"   tabindex="6" formControlName="pancard">
+                <app-field-error-display [displayError]="isFieldValid('pancard')" errorMsg="Please Enter pancard">
+                </app-field-error-display>
+              </div>
+
+              <div class="form-group" [ngClass]="displayFieldCss('aadhaarcard')">
+                <input type="text" id="aadhaarcard" class="form-control input-lg" placeholder="aadhaarcard"   tabindex="6" formControlName="aadhaarcard">
+                <app-field-error-display [displayError]="isFieldValid('aadhaarcard')" errorMsg="Please Enter aadhaarcard">
+                </app-field-error-display>
+              </div>
+
+              <div class="form-group" [ngClass]="displayFieldCss('driving_license')">
+                <input type="text" id="driving_license" class="form-control input-lg" placeholder="driving_license"   tabindex="6" formControlName="driving_license">
+                <app-field-error-display [displayError]="isFieldValid('driving_license')" errorMsg="Please Enter driving_license">
+                </app-field-error-display>
+              </div>
+
+              <div class="form-group" [ngClass]="displayFieldCss('previous_employment')">
+                <input type="text" id="previous_employment" class="form-control input-lg" placeholder="previous_employment"   tabindex="6" formControlName="previous_employment">
+                <app-field-error-display [displayError]="isFieldValid('previous_employment')" errorMsg="Please Enter previous_employment">
+                </app-field-error-display>
+              </div>
+
+              <div class="form-group" [ngClass]="displayFieldCss('previous_employment_address')">
+                <input type="text" id="previous_employment_address" class="form-control input-lg" placeholder="previous_employment_address"   tabindex="6" formControlName="previous_employment_address">
+                <app-field-error-display [displayError]="isFieldValid('previous_employment_address')" errorMsg="Please Enter previous_employment_address">
+                </app-field-error-display>
+              </div>
+
+              <div class="form-group" [ngClass]="displayFieldCss('previous_employment_mobile')">
+                <input type="text" id="previous_employment_mobile" class="form-control input-lg" placeholder="previous_employment_mobile"   tabindex="6" formControlName="previous_employment_mobile">
+                <app-field-error-display [displayError]="isFieldValid('previous_employment_mobile')" errorMsg="Please Enter previous_employment_mobile">
+                </app-field-error-display>
+              </div>
+      
+
+
+              <div class="form-group form-actions">
+                <button type="submit" (click)="onSubmit()" class="btn btn-pill btn-success">Submit</button> &nbsp;
+                <button type="reset" class="btn btn-pill btn-danger">Reset </button>
+              </div>
+
+            </form>
+          </div>`
+        </div>
+      </div>
+    </div>
+
+
+

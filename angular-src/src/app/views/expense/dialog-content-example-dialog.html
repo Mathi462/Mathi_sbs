@@ -1,0 +1,75 @@
+
+
+
+<!-- <h1 mat-dialog-title>Branchname</h1> -->
+    <mat-dialog-content class="mat-typography"> 
+        <!-- <div class="input-group container">
+            
+       {{tmpData.values.Branchname}}  
+        </div>
+      </mat-dialog-content>  -->
+
+<div >
+     <div class="card">
+       <div class="card-header">
+         Update Expense
+       </div>
+       <div class="card-body">
+         <form (ngSubmit)="onSubmit2(f2)" #f2="ngForm"   class="jumbotron">
+           <div class="form-group">
+             <div class="input-group">
+               <div class="input-group-prepend">
+                 <span class="input-group-text"><i class="fa fa-vcard"></i></span>
+               </div>
+               <input type="text" class="form-control"  name="ExpenseType"  placeholder="ExpenseType " ngModel  [(ngModel)] = "this.data.cData.ExpenseType">
+             </div>
+           </div>
+   
+           <div class="form-group">
+             <div class="input-group">
+               <div class="input-group-prepend">
+                 <span class="input-group-text"><i class="fa fa-book"></i></span>
+               </div>
+               <input type="text" class="form-control" name="Branchname" placeholder="Branchname" ngModel  [(ngModel)] = "this.data.cData.Branchname">
+             </div>
+           </div>
+   
+           <div class="form-group">
+             <div class="input-group">
+               <div class="input-group-prepend">
+                 <span class="input-group-text"><i class="fa fa-book"></i></span>
+               </div>
+               <input type="text" class="form-control" name="Amount" placeholder="Amount" ngModel  [(ngModel)] = "this.data.cData.Amount">
+             </div>
+           </div>
+
+           <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-book"></i></span>
+              </div>
+              <input type="text" class="form-control" name="descripition" placeholder="descripition" ngModel  [(ngModel)] = "this.data.cData.descripition">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-book"></i></span>
+              </div>
+              <input type="text" class="form-control" name="date" placeholder="date" ngModel  [(ngModel)] = "this.data.cData.date">
+            </div>
+          </div>
+
+          
+         
+        
+          <div class="form-group form-actions" mat-dialog-actions>
+            <button type="submit" class="btn btn-pill btn-success" [mat-dialog-close]="this.data" >Update</button> &nbsp;
+            <button type="button" class="btn btn-pill btn-danger" (click)="onNoClick()">Cancel </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>  

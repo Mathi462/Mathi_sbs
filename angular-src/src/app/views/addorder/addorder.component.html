@@ -1,0 +1,474 @@
+<!-- <div> -->
+<!-- <mat-card style="background-color:#e5effa63;padding: 4px;"> -->
+<div>
+
+
+  <h3 class="text-center"> INVOICE BILLLNG
+  </h3>
+  <div class="row">
+    <div class="col-sm-8">
+      <div>
+        <h3>{{branchDetails.bname}}</h3>
+      </div>
+      <div>
+        <div class="row">
+            <div class="col-sm-3 ">
+            <form [formGroup]="cust">
+             
+                <!-- <mat-form-field>
+                  <input matInput formControlName="custmerphone" placeholder="EnterPhone"  [(ngModel)]="result.custmerphone">
+                 </mat-form-field> -->
+                <div class="autocomplete" style="width:300px;">
+                  <mat-form-field>
+                    <input type="text" placeholder="EnterPhone" autocomplete="off" formControlName="custmerphone" aria-label="Number"
+                      matInput>
+                      <div [hidden]="!showSuggest" id="autocomplete-list" class="autocomplete-items">
+                          <div (click)=setItem()>
+                            {{result.custmerphone}}
+                          </div>
+      
+                        </div>
+                  </mat-form-field>
+                  
+                </div>
+
+
+            
+            </form>
+          </div>
+          <div class="col-sm-3 ">
+            <mat-form-field>
+              <input matInput placeholder="Customer Name" [(ngModel)]="result.custmername" />
+            </mat-form-field>
+          </div>
+          <!-- <div class="col-sm-3">
+                    <mat-form-field>
+                      <input matInput placeholder="Customer Phone" value="{{result.custmerphone}}"  />
+                    </mat-form-field>
+                  </div> -->
+          <div class="col-sm-3">
+            <mat-form-field>
+              <input matInput placeholder="Email" [(ngModel)]="result.custmeremail" />
+            </mat-form-field>
+          </div>
+          
+
+        </div>
+        <div>
+          <form [formGroup]="form">
+            <mat-form-field>
+              <input matInput formControlName="add_barcode" placeholder="Enter barcode">
+
+            </mat-form-field>
+          </form>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="text-right">
+          <mat-form-field>
+            <input matInput [(ngModel)]="invoice" placeholder="InvoiceNo:">
+  
+          </mat-form-field>
+  
+        </div>
+  
+  
+        <div class="text-right ">
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="result.orderdate" [ngModelOptions]="{standalone: true}"
+              placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+  </div>
+
+
+
+  <!-- </form> -->
+  <!-- </form> -->
+  <div style="margin-bottom: 0px;  ">
+    <!-- <mat-card-title style="text-align: start;font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">BILLING
+                INVOICE
+              </mat-card-title> -->
+
+    <form class="card-content " [formGroup]="params">
+      <div>
+        <div class="table-responsive-md">
+          <table class="table table-striped" style="background-color:#c1d6eb;">
+            <thead style="background-color:#e7343400;">
+              <tr>
+
+                <!-- <th style="width:120px; height: 35px;">Barcode </th> -->
+                <th class="text-center" style="width: 40%">Product</th>
+                <th class="text-center" style="width: 10%">Rate</th>
+                <th class="text-center" style="width: 10%">Qty</th>
+                <th class="text-center" style="width: 10%">Discount</th>
+                <!-- <th style="width:120px; height: 35px;">disrupe(RS)</th> -->
+                <th class="text-center" style="width: 10%">GST(%)</th>
+                <!-- <th style="width:120px; height: 35px;">GST(RS)</th> -->
+                <th class="text-center" style="width: 10%">Amount</th>
+                <th class="text-center" style="width: 10%">Action </th>
+              </tr>
+            </thead>
+            <tbody formArrayName="prod" *ngFor="let unit of params.controls.prod.controls; let i=index">
+
+              <tr [formGroupName]="i">
+                <!-- <td >
+                        <input class="form-control" type="text" formControlName="barcode" />
+                      </td> -->
+
+                <td>
+                  <textarea class="form-control" style="
+                      
+                        height:78px; 
+                        max-height:78px;"
+                    type="text" formControlName="product"></textarea>
+                </td>
+                <td>
+                  <input class="form-control" type="text" formControlName="rate" />
+                </td>
+
+                <td>
+                  <input class="form-control" type="number" value="1" formControlName="qty" />
+                </td>
+                <td>
+                  <input class="form-control" type="text" formControlName="dis" />
+                </td>
+                <!-- <td >
+                        <input class="form-control"  type="text" formControlName="disrupe" />
+                      </td> -->
+                <td>
+                  <input class="form-control" type="text" formControlName="gst" />
+                </td>
+
+                <!-- 
+                      <td  >
+                        <input class="form-control"  type="text" formControlName="gstrpe"
+                          value="{{unit.gst}}" />
+                      </td> -->
+                <td>
+                  <input class="form-control" type="text" formControlName="amount" value="{{unit.gst}}" />
+                </td>
+                <td>
+                  <div class="container ">
+                    <div class="row text-center">
+                      <div class="col-sm-2">
+
+                        <mat-icon (click)="addProd()">playlist_add</mat-icon>
+
+                      </div>
+                      <div class="col-sm-2">
+
+                        <mat-icon *ngIf="params.controls.prod.controls.length > 1" (click)="deleteFieldValue(i)">delete_forever</mat-icon>
+                      </div>
+
+
+                    </div>
+
+                  </div>
+
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- </mat-card> -->
+
+
+
+
+
+
+
+
+  <!-- Total price calculation formated with angular currency pipe -->
+  <!-- <mat-card style="background-color:#e5effa63"> -->
+  <form [formGroup]="saveBilling" (ngSubmit)="saveBill()">
+    <div class="row">
+
+      <div class="col-sm-4">
+
+        <div class="form-group">
+
+          <select class="form-control" placeholder="Payment Status" formControlName="paymentStatus">
+            <option value="full_payment">Full Payment</option>
+
+            <option value="no_payment">NO Payment</option>
+          </select>
+
+
+        </div>
+
+        <div class="form-group">
+
+          <select class="form-control" placeholder="Payment Type" formControlName="paymenttype">
+            <option value="Card">Card</option>
+            <option value="OnCash">OnCash</option>
+
+          </select>
+
+        </div>
+        <!-- <div class="col-sm-3">
+                <mat-form-field>
+                  <textarea matInput placeholder="Message displayed on invoice" formControlName="message"></textarea>
+                </mat-form-field>
+              </div> -->
+        <div class="form-group">
+
+          <select class="form-control" placeholder="Sales Person Name" formControlName="salesperson">
+
+            <option value="{{cat.firstname}}" *ngFor="let cat of this.firstname">
+              {{cat.firstname}}
+            </option>
+
+          </select>
+
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div>
+
+          <mat-form-field>
+
+            <input matInput placeholder="Paid Amount" formControlName="paidAmount">
+
+
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+
+            <input style="color:black" matInput placeholder="Balance" value="{{this.balance}}" disabled>
+
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <input style="color:black" matInput placeholder="Total Discount" value="{{this.bill.disCount}}" disabled>
+
+          </mat-form-field>
+        </div>
+
+      </div>
+      <div class="col-sm-4">
+        <!-- <div>
+                  <mat-form-field>
+                    <input style="color:black" matInput value="{{this.bill.sub_total}}" placeholder="Sub Amount" disabled />
+        
+                  </mat-form-field>
+                </div>
+                <div>
+                  <mat-form-field>
+                    <input style="color:black" matInput placeholder="CGST" value="{{this.bill.cgst}}" disabled />
+        
+                  </mat-form-field>
+                </div>
+                <div>
+                  <mat-form-field>
+                    <input style="color:black" matInput placeholder="SGST" value="{{this.bill.sgst}}" disabled>
+        
+                  </mat-form-field>
+                </div>
+        
+                <div>
+                  <mat-form-field>
+                    <input style="color:black" matInput value=" {{this.bill.grandtotal | currency:'RS'}}" placeholder="Total Amount"
+                      disabled />
+        
+                  </mat-form-field>
+                </div> -->
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="font-weight-bold">
+              Sub Total :
+            </div>
+            <div class="font-weight-bold">
+              CGST :
+            </div>
+            <div class="font-weight-bold">
+              SGST :
+            </div>
+            <div class="font-weight-bold">
+              Total Amount :
+            </div>
+
+          </div>
+          <div class="col-sm-6">
+            <div class="font-weight-bold">
+              <div>{{this.bill.sub_total}}</div>
+              <div>{{this.bill.cgst}}</div>
+
+
+              <div>{{this.bill.sgst}}</div>
+
+              <div>
+                {{this.bill.grandtotal | currency:'RS '}}
+              </div>
+            </div>
+
+
+          </div>
+
+
+        </div>
+        <div class="mt-4">
+
+          <button class="ml-2" style="float: Right;" type="button" color=primary (click)="print()" mat-raised-button>
+            Print
+          </button>
+          <button class="ml-3" style="float: Right;" color="accent" mat-raised-button>
+            Save
+          </button>
+
+
+        </div>
+
+
+      </div>
+    </div>
+  </form>
+  <div>
+
+    <!-- <div class="row ">
+              <div class="col-sm-3">
+                 <mat-form-field appearance="outline">
+                    <mat-select placeholder="Branch Name"  formControlName="branch">
+        
+                      <mat-option value="{{cat.bname}}" *ngFor="let cat of this.bname">
+                        {{cat.bname}}
+                      </mat-option>
+        
+                    </mat-select>
+        
+                   
+                  </mat-form-field> 
+        
+        
+                <mat-form-field>
+        
+                  <input style="color:black" matInput placeholder="Branch" value="{{this.branch}}" disabled>
+        
+                </mat-form-field>
+        
+        
+              </div>
+        
+            </div> -->
+
+
+
+
+
+
+  </div>
+  <!-- </mat-card> -->
+
+
+
+  <div id="print-section" hidden='true'>
+
+    <table style="width: 100%; border-collapse: collapse; margin: 20px 20px 20px 20px">
+      <tr>
+        <td style="text-align: center;">
+          <img class="w-20 h-20" style="width:150px;height:150px;" src="http:localhost:3001/logo/{{this.branchOfLogo}}">
+        </td>
+        <td width="551px;">
+          <h2>{{branchDetails.storename}}</h2>
+          <p>Address: {{branchDetails.address}}<br>Phone : {{branchDetails.phone1}}<br>PAN :
+            {{branchDetails.pan_num}}<br>GST : {{branchDetails.gst_num}}</p>
+        </td>
+        <td width="300px;" style="text-align:right; padding-top: 120px; padding-right:30px; ">Invoice No:
+          {{this.invoice}}<br>Date:
+          {{this.result.orderdate | date : short}}</td>
+      </tr>
+      <tr>
+        <td colspan="3" style="text-align: center; padding-top: 30px;">INVOICE</td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <hr>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" style="padding-left: 50px;">Name:{{result.custmername}} <br> Phone
+          :{{result.custmerphone}} <br> Email : {{result.custmeremail}} </td>
+      </tr>
+
+      <tr>
+        <td colspan="3">
+          <table border="1" style="border-collapse: collapse; margin-top: 30px;" width="94%" align="center">
+            <tr>
+              <th width="40%">Product</th>
+              <th width="5%">Qty</th>
+              <th width="10%">Price</th>
+              <th width="10%">CGST</th>
+              <th width="10%">SGST</th>
+              <th width="15%">Amount</th>
+            </tr>
+            <tr *ngFor="let unit of printSection ">
+              <td>{{unit.product}}</td>
+              <td align="center">{{unit.qty}} </td>
+              <td align="center">{{unit.rate}}</td>
+              <td align="center">{{unit.calgst}}</td>
+              <td align="center">{{unit.calgst}}</td>
+              <td align="center">{{unit.amount}}</td>
+
+            </tr>
+
+
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <p style="padding-left: 50px; margin-top: 50px;">In Words :{{this.amtInWords}} <br><br><br>For<br><br><br><br><br><br>Authorised
+            Signatory</p>
+        </td>
+        <td>
+          <p style="text-align: right; margin-right: 30px; margin-top: 157px;">Discount :{{this.totaldis | currency:'RS
+            '}}<br>GST
+            :{{this.totalgst | currency:'RS '}}<br>Total Amount:{{this.totalgst+this.totalSum-this.totaldis |
+            currency:'RS '}}<br>Balance:{{this.balance}}
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <hr>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <p style="text-align: center;">If you have any questions concerning this invoice, contact -
+            {{branchDetails.email}}</p>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <p style="text-align: center; font-weight: bold;">THANK YOU ..!! VISIT AGAIN</p>
+        </td>
+      </tr>
+
+    </table>
+
+
+  </div>
+  <!-- <button (click)="print()">print</button> -->
+  <!-- <button mat-raised-button color="primary" (click)="print()">print</button> -->
+
+
+  <!-- <img  style="width:500px;height:600px;" src="http://localhost:3001/public/logo/logo.png"> -->
+
+</div>
