@@ -107,11 +107,16 @@ export class UpdatestockComponent implements OnInit {
     this.getModel();
 
 
-    this.update_id = this.localsto._id;
-    console.log(this.update_id)
+    
 
-    this.toUpdate =   localStorage.getItem('data')    
+    this.toUpdate =   localStorage.getItem('data')   
+    
+    
+    console.log(this.update_id) 
+    console.log(JSON.parse(this.toUpdate))
+    
     this.toUpdate = JSON.parse(this.toUpdate)
+    this.update_id = this.toUpdate._id;
       Object.keys(this.toUpdate).forEach(key => {
         if(key == "_id") {
           delete this.toUpdate[key]
@@ -119,6 +124,7 @@ export class UpdatestockComponent implements OnInit {
         if(key == " __v") {
           delete this.toUpdate[key]
         }
+        
         
       })
 
@@ -185,7 +191,7 @@ else{
 
 }
 
-console.log(this.newAttribute1)
+// console.log(this.newAttribute1)
 console.log(this.toUpdate)
   
     // console.log(Date.now())
@@ -247,15 +253,12 @@ console.log(this.toUpdate)
       stock_status: ['',Validators.required],
       cgst: ['',Validators.required],
       sgst: ['',Validators.required],
-      remarks: [''],
-      stock_visible:'yes'
+      remarks: ['']
+    
     });
 
 
-    Object.assign(this.toUpdate , {
-      ManufacturerName : '',
-      stock_visible : ''
-    })
+  
 
 
     this.form.get('quantity').valueChanges.subscribe(value => {
@@ -372,18 +375,17 @@ console.log(this.toUpdate)
 
   updateass(){
     // console.log(this.localsto.value)
-
-    let data={
-
-     
+    console.log(this.form.value)
+    // let data={
+ 
       
-    }
+    // }
 
-    console.log(data) 
+    // console.log(data) 
    
     console.log(this.update_id)
-    this.apiService.updateData('/all_in_one_stocks/stock/'+this.update_id.value,data).then(dataUpdate =>{
-      this.pop.snakbar('Accessories Updated', 'Successfully');
+    this.apiService.updateData('/all_in_one_stocks/stock/'+this.update_id,JSON.stringify(this.form.value) ).then(dataUpdate =>{
+      this.pop.snakbar('Updated', 'Successfully');
       console.log(dataUpdate)
     });
 

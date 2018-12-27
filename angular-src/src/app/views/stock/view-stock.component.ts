@@ -74,16 +74,6 @@ export class ViewStockComponent implements OnInit {
         this.apiService.retriveData('/all_in_one_stocks/stock').then(displayStock => {
             this.display3 = displayStock;
             console.log(this.display3)
-            
-            // for(let i=0;i<this.display3.length;i++){
-                
-            //     console.log(this.display3[i])
-            //     callModel(this.display3[i])
-            //     this.model_name.push(this.display3[i])
-            //     console.log(this.model_name)
-            // }
-            
-            // // this.callModel(this.model_name);
             console.log(this.display3[0].brand_name.BrandName)
             this.dataSource1 = new MatTableDataSource(this.display3);
             console.log(this.dataSource1);
@@ -113,11 +103,11 @@ export class ViewStockComponent implements OnInit {
         console.log(value);
         this.nav.sidebarMinimized=false;
         const cData={
-
+            _id:value._id,
             add_barcode:value.add_barcode,
             battery_no:value.battery_no,
             branch:value.branch,
-            brand_name:value.brand_name,
+            brand_name:value.brand_name.BrandName,
             category_type:value.category_type,
             cgst:value.cgst,
             color:value.color,
@@ -128,17 +118,19 @@ export class ViewStockComponent implements OnInit {
             imei1:value.imei1,
             imei2:value.imei2,
             lp:value.lp,
-            model_name:value.model_name,
+            model_name:value.model_name.ModelName,
             quantity:value.quantity,
             remarks:value.remarks,
             sgst:value.sgst,
             sp:value.sp,
-            stock_status:value.stock_status
+            stock_status:value.stock_status,
+            ManufacturerName:value.ManufacturerName
 
 
 
 
         };
+        console.log(cData)
         localStorage.setItem("data",JSON.stringify(cData))
         this.ngZone.run(()=>{
                  this.router.navigateByUrl('/stock/updatestock')

@@ -12,28 +12,28 @@
       </div>
       <div>
         <div class="row">
-            <div class="col-sm-3 ">
+          <div class="col-sm-3 ">
             <form [formGroup]="cust">
-             
-                <!-- <mat-form-field>
+
+              <!-- <mat-form-field>
                   <input matInput formControlName="custmerphone" placeholder="EnterPhone"  [(ngModel)]="result.custmerphone">
                  </mat-form-field> -->
-                <div class="autocomplete" style="width:300px;">
-                  <mat-form-field>
-                    <input type="text" placeholder="EnterPhone" autocomplete="off" formControlName="custmerphone" aria-label="Number"
-                      matInput>
-                      <div [hidden]="!showSuggest" id="autocomplete-list" class="autocomplete-items">
-                          <div (click)=setItem()>
-                            {{result.custmerphone}}
-                          </div>
-      
-                        </div>
-                  </mat-form-field>
-                  
-                </div>
+              <div class="autocomplete" style="width:300px;">
+                <mat-form-field>
+                  <input type="text" placeholder="EnterPhone" autocomplete="off" formControlName="custmerphone"
+                    aria-label="Number" matInput>
+                  <div [hidden]="!showSuggest" id="autocomplete-list" class="autocomplete-items">
+                    <div (click)=setItem()>
+                      {{result.custmerphone}}
+                    </div>
+
+                  </div>
+                </mat-form-field>
+
+              </div>
 
 
-            
+
             </form>
           </div>
           <div class="col-sm-3 ">
@@ -51,7 +51,7 @@
               <input matInput placeholder="Email" [(ngModel)]="result.custmeremail" />
             </mat-form-field>
           </div>
-          
+
 
         </div>
         <div>
@@ -66,24 +66,24 @@
       </div>
     </div>
     <div class="col-sm-4">
-        <div class="text-right">
-          <mat-form-field>
-            <input matInput [(ngModel)]="invoice" placeholder="InvoiceNo:">
-  
-          </mat-form-field>
-  
-        </div>
-  
-  
-        <div class="text-right ">
-          <mat-form-field>
-            <input matInput [matDatepicker]="picker" [(ngModel)]="result.orderdate" [ngModelOptions]="{standalone: true}"
-              placeholder="Choose a date">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </div>
+      <div class="text-right">
+        <mat-form-field>
+          <input matInput [(ngModel)]="invoice" placeholder="InvoiceNo:">
+
+        </mat-form-field>
+
       </div>
+
+
+      <div class="text-right ">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="result.orderdate" [ngModelOptions]="{standalone: true}"
+            placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
   </div>
 
 
@@ -325,11 +325,15 @@
         </div>
         <div class="mt-4">
 
+
           <button class="ml-2" style="float: Right;" type="button" color=primary (click)="print()" mat-raised-button>
             Print
           </button>
-          <button class="ml-3" style="float: Right;" color="accent" mat-raised-button>
+          <button class="ml-2" style="float: Right;" color="accent" mat-raised-button>
             Save
+          </button>
+          <button class="ml-2" style="float: Right;"  type="button" (click)="clearAllData()" color="warn" mat-raised-button>
+            Reset
           </button>
 
 
@@ -382,7 +386,7 @@
     <table style="width: 100%; border-collapse: collapse; margin: 20px 20px 20px 20px">
       <tr>
         <td style="text-align: center;">
-          <img class="w-20 h-20" style="width:150px;height:150px;" src="http:localhost:3001/logo/{{this.branchOfLogo}}">
+          <img class="w-20 h-20" style="width:150px;height:150px;" src="http://localhost:3001/logo/{{this.branchOfLogo}}">
         </td>
         <td width="551px;">
           <h2>{{branchDetails.storename}}</h2>

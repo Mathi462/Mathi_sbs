@@ -64,10 +64,11 @@ export class AddorderComponent implements OnInit {
   ngOnInit() {
 
     this.item = JSON.parse(localStorage.getItem('currentUser'));
+    
     console.log(this.item)
     if(this.item!=null){
 
-      this.branchOfLogo = this.item.shop_logo;
+      this.branchOfLogo = this.item.shop_logo
       console.log(this.branchOfLogo)
       this.branchDetails = this.item;
     }
@@ -584,14 +585,14 @@ export class AddorderComponent implements OnInit {
     let data = {
       bname: value
     }
-    this.apiService.getData('/branchs/search', data).then(disLogo => {
-      console.log(disLogo);
-      this.temp = disLogo;
-      console.log(this.temp.shop_logo);
+    // this.apiService.getData('/branchs/search', data).then(disLogo => {
+    //   console.log(disLogo);
+    //   this.temp = disLogo;
+    //   console.log(this.temp.shop_logo);
 
-      this.branchOfLogo = this.temp.shop_logo;
+    //   this.branchOfLogo = this.temp.shop_logo;
 
-    });
+    // });
 
   }
   saveBill() {
@@ -935,4 +936,14 @@ export class AddorderComponent implements OnInit {
     }
     return words.reverse().join(' ');
   }
+
+
+  clearAllData(){
+    
+    this.form.reset()
+    this.cust.reset()
+    this.params.reset()
+    this.saveBilling.reset()
+  }
+
 }

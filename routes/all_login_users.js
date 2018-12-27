@@ -157,6 +157,7 @@ router.put('/adminregister/:id', (req, res,next) => {
       email : req.body.email,
       mobile_no : req.body.mobile_no,
       status : req.body.status
+
     };
     Admin.findByIdAndUpdate(req.params.id, { $set: newAdmin }, { new: true }, (err, doc) => {
         if (!err)
