@@ -9,50 +9,18 @@
         </mat-card-header>
         <mat-card-content>
           <form [formGroup]="form">
-            <!-- <div class="form-group" [ngClass]="displayFieldCss('BrandID')">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fa fa-vcard"></i></span>
-                    </div>
-                    <input type="text" formControlName="BrandID" class="form-control"  placeholder="BrandID" formControlName="BrandID" tabindex="1">
-                    <app-field-error-display [displayError]="isFieldValid('BrandID')" errorMsg="Enter BrandID">
-                    </app-field-error-display>
-                  </div>
-                </div> -->
-
-
             <div class="form-group">
-              <!-- <div class="input-group" [ngClass]="displayFieldCss('BrandName')"> -->
-              <!-- <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fa fa-book"></i></span>
-                    </div> -->
-              <!-- <mat-form-field>
-                      <input matInput type="text" formControlName="BrandName" class="form-control" placeholder="BRAND NAME ">
-                    </mat-form-field> -->
-
               <mat-form-field style="width:100%">
                 <input matInput placeholder="BRAND NAME" formControlName="BrandName">
               </mat-form-field>
-              <!-- <app-field-error-display [displayError]="isFieldValid('BrandName')">
-                    </app-field-error-display> -->
-
-              <!-- </div> -->
             </div>
 
             <div class="form-group">
-
-
               <mat-form-field style="width:100%">
                 <mat-select formControlName="Status" id="sel1" placeholder="STATUS">
                   <mat-option value=" " disabled selected>STATUS</mat-option>
-
-                  <mat-option value="Available">
-                    Available
-                  </mat-option>
-                  <mat-option value="UnAvailable">
-                    UnAvailable
-                  </mat-option>
-
+                  <mat-option value="Available"> Available  </mat-option>
+                  <mat-option value="UnAvailable"> UnAvailable  </mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -63,63 +31,14 @@
                   <button type="submit" style="border-radius: 30px;" (click)="onSubmit()" mat-raised-button color=primary>Submit</button> &nbsp;
                   <button type="reset" style="border-radius: 30px;" mat-raised-button color=warn>Reset </button>
               </div>
-             
             </div>
 
           </form>
         </mat-card-content>
       </mat-card>
-      <!-- <div class="card">
-        <div class="card-header">
-          <b></b>
-        </div>
-        <div class="card-body">
-
-        </div>
-      </div> -->
+      
     </div>
 
-    <!-- <div class="col-sm-8">
-      <div class="card">
-        <div class="card-header">
-          <i class="fa fa-align-justify"></i> Display Curriculum
-        </div>
-        <div class="card-body">
-          <table class="table table-sm">
-            <thead>
-              <tr>
-                <th>Curriculum ID</th>
-                <th>Curriculum Name</th>
-                <th>Edit</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let dis of display1">
-               
-                <td>{{dis.cid}}</td>
-                <td>{{dis.curriculumName}}</td>
-                <td>
-
-                  <button mat-icon-button (click)="openDialog(dis)" color="primary">
-                    <mat-icon>edit</mat-icon>
-                  </button>
-
-                </td>
-                <td>
-                  <button mat-icon-button color="warn" (click)="deleteCurriculum(dis._id)">
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="onPageChanged($event)">
-          </mat-paginator>
-        </div>
-      </div>
-    </div> -->
 
 
     <div class="col-sm-8">
@@ -135,12 +54,6 @@
         <mat-card-content>
           <div >
             <table mat-table style="width: 100%;" [dataSource]="dataSource" matSort>
-
-
-              <!-- <ng-container matColumnDef="BrandID">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header> BrandID </th>
-                      <td mat-cell *matCellDef="let row"> {{row.BrandID}} </td>
-                    </ng-container> -->
 
               <ng-container matColumnDef="BrandName">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> BrandName </th>
@@ -184,13 +97,23 @@
         </mat-card-content>
 
       </mat-card>
-      <!-- <div class="card">
-        <div class="card-header">
-          <i class="fa fa-align-justify"></i>
-        </div>
-        <div>
-        </div>
-      </div> -->
+      
     </div>
   </div>
 </div>
+
+<br>
+
+
+<div class="row">
+    <div class="col-sm-4">
+      <mat-card class="mt-3">
+          <mat-card-title>
+              <strong> Add Brand </strong>
+            </mat-card-title>
+            <mat-card-content>
+              
+            </mat-card-content>
+        </mat-card>
+        </div>
+        </div>

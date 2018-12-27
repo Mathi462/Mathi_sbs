@@ -56,7 +56,6 @@ export class AddorderComponent implements OnInit {
   branchDetails: any;
   productdetails: any = [];
   custDet: any;
-  custDet1:any;
   proddetails: any;
   allStockid: any = [];
   inSideId: any;
@@ -247,7 +246,7 @@ export class AddorderComponent implements OnInit {
 
    
 
-    let contrl = <FormArray>this.form.get('prod')
+    let contrl = <FormArray>this.params.get('prod')
 
     // this.form.controls['add_barcode'].valueChanges.subscribe(
     //   (selectedValue1) => {
@@ -286,129 +285,105 @@ export class AddorderComponent implements OnInit {
     //   })
 
 
-    // this.form.controls['add_barcode'].valueChanges.subscribe(
-    //   (selectedValue1) => {
-    //     this.apiService.getData("/all_in_one_stocks/search", { add_barcode: selectedValue1 }).then(csk => {
-    //       console.log(csk)
-    //       if (csk == null) {
-    //         console.log('yes null')
-    //         // contrl.at(this.position).reset()
-    //       }
-    //       else {
-    //         console.log('data is der')
-    //         this.stockresult = csk
-    //         if (this.stockresult.category_type === 'mobile' || this.stockresult.category_type === 'Mobile' || this.stockresult.category_type === 'MOBILE') {
-    //           console.log('mobile')
+    this.form.controls['add_barcode'].valueChanges.subscribe(
+      (selectedValue1) => {
+        this.apiService.getData("/all_in_one_stocks/search", { add_barcode: selectedValue1 }).then(csk => {
+          console.log(csk)
+          if (csk == null) {
+            console.log('yes null')
+            // contrl.at(this.position).reset()
+          }
+          else {
+            console.log('data is der')
+            this.stockresult = csk
+            if (this.stockresult.category_type === 'mobile' || this.stockresult.category_type === 'Mobile' || this.stockresult.category_type === 'MOBILE') {
+              console.log('mobile')
 
-    //           if (this.stockresult.add_barcode == selectedValue1) {
-    //             console.log(this.stockresult)
-    //             this.allStockid = this.stockresult._id
-    //             console.log(this.allStockid)
-    //             contrl.at(this.position).get('barcode').setValue(this.stockresult.add_barcode)
-    //             contrl.at(this.position).get('qty').setValue(1)
-    //             contrl.at(this.position).get('product').setValue(this.stockresult.brand_name + ' ' + this.stockresult.model_name + '\n' + ' IMEI1:' + this.stockresult.imei1 + '\n' + 'IMEI2:' + this.stockresult.imei2)
-    //             contrl.at(this.position).get('rate').setValue(this.stockresult.cp)
-    //             contrl.at(this.position).get('gst').setValue(Number(this.stockresult.cgst) + Number(this.stockresult.sgst))
-    //             // this.inSideId = this.stockresult[i]._id
-    //             // console.log(this.inSideId)
-    //           }
-    //         } 
-    //         else {
-    //          console.log('no')
 
-    //           if (this.stockresult.add_barcode == selectedValue1) {
-    //             console.log(this.stockresult)
-    //             console.log(this.stockresult._id)
+              if (this.stockresult.add_barcode == selectedValue1) {
+                console.log(this.stockresult)
+                this.allStockid = this.stockresult._id
+                console.log(this.allStockid)
+                contrl.at(this.position).get('barcode').setValue(this.stockresult.add_barcode)
+                contrl.at(this.position).get('qty').setValue(1)
+                contrl.at(this.position).get('product').setValue(this.stockresult.brand_name + ' ' + this.stockresult.model_name + '\n' + 'IMEI1:' + this.stockresult.imei1 + '\n' + 'IMEI2:' + this.stockresult.imei2)
+                contrl.at(this.position).get('rate').setValue(this.stockresult.cp)
+                contrl.at(this.position).get('gst').setValue(Number(this.stockresult.cgst) + Number(this.stockresult.sgst))
 
-    //             this.allStockid = this.stockresult._id
-    //             console.log(this.allStockid)
-    //             contrl.at(this.position).get('barcode').setValue(this.stockresult.add_barcode)
-    //             contrl.at(this.position).get('qty').setValue(1)
-    //             contrl.at(this.position).get('product').setValue(this.stockresult.brand_name + ' ' + this.stockresult.model_name + '\n' + 'Unique Number:' + this.stockresult.otherno + '\n' + 'Type:' + this.stockresult.typeon)
-    //             contrl.at(this.position).get('rate').setValue(this.stockresult.cp)
-    //             contrl.at(this.position).get('gst').setValue(Number(this.stockresult.cgst) + Number(this.stockresult.sgst))
-    //             // this.inSideId = this.stockresult[i]._id
-    //             // console.log(this.inSideId)
-    //           }
-    //         }
-    //       }
-    //       if (selectedValue1 == "") {
-    //         this.stockresult = {
 
-    //           brand_name: "",
-    //           model_name: "",
-    //           dp: "",
-    //           gst: "",
-    //           imei1: "",
-    //           imei2: "",
-    //         }
-    //       }
-    //       console.log(this.stockresult)
-    //       console.log(selectedValue1)
-    //     })
-    //   });
+                // this.inSideId = this.stockresult[i]._id
+                // console.log(this.inSideId)
+              }
+
+
+            } 
+            else {
+              console.log('no')
+
+
+              if (this.stockresult.add_barcode == selectedValue1) {
+                console.log(this.stockresult)
+                console.log(this.stockresult._id)
+
+                this.allStockid = this.stockresult._id
+                console.log(this.allStockid)
+                contrl.at(this.position).get('barcode').setValue(this.stockresult.add_barcode)
+                contrl.at(this.position).get('qty').setValue(1)
+                contrl.at(this.position).get('product').setValue(this.stockresult.brand_name + ' ' + this.stockresult.model_name + '\n' + 'Unique Number:' + this.stockresult.otherno + '\n' + 'Type:' + this.stockresult.typeon)
+                contrl.at(this.position).get('rate').setValue(this.stockresult.cp)
+                contrl.at(this.position).get('gst').setValue(Number(this.stockresult.cgst) + Number(this.stockresult.sgst))
+                // this.inSideId = this.stockresult[i]._id
+                // console.log(this.inSideId)
+              }
+
+
+            }
 
 
 
-
-    this.cust1.get('add_barcode').valueChanges.subscribe(
-      (selectedValue) => {
-        console.log(selectedValue)
-        
-        this.apiService.getData("/all_in_one_stocks/search", { add_barcode: selectedValue }).then(d => {
-          this.custDet1 = d
-          console.log(this.custDet)
-          // if (this.custDet != null) {
-          //   this.showSuggest = false
-          //   if (selectedValue == "") {
-          //     this.result = {
-          //       custmername: '',
-          //       custmerphone: '',
-          //       custmeremail: ''
-          //     }
-          //   }
-          //   else {
-          //     this.showSuggest = true
-          //     this.result = {
-          //       custmername: this.custDet.customerfname,
-          //       custmerphone: this.custDet.customerphno,
-          //       custmeremail:this.custDet.customeremail
-          //     }
-          //   }
-          // }
-          // else if (this.custDet == null) {
-          //   this.result = {
-          
-          //     custmername: this.cust.controls['custmername'].value,
-          //     custmerphone: this.cust.controls['custmerphone'].value,
-          //     custmeremail: this.cust.controls['customeremail'].value
-          //   }
-          // }
-
-
-          console.log(this.result)
-          console.log(selectedValue);
-        }
-        );
-      })
+          }
 
 
 
-    
+          // let contrl = <FormArray>this.params.get('prod')
+
+          // console.log(this.stockresult.productdetails.add_barcode)
 
 
 
+
+          if (selectedValue1 == "") {
+            this.stockresult = {
+
+              brand_name: "",
+              model_name: "",
+              dp: "",
+              gst: "",
+              imei1: "",
+              imei2: "",
+
+
+            }
+          }
+          console.log(this.stockresult)
+          console.log(selectedValue1)
+        })
+
+
+
+      }
+
+
+
+    )
 
 
   }
   setItem() {
     this.cust.get('custmerphone').setValue(this.result.custmerphone)
+    console.log(this.showSuggest)
     this.showSuggest = false
-  }
-
-  setItem1() {
-    this.cust.get('custmerphone').setValue(this.result.custmerphone)
-    this.showSuggest = false
+    console.log(this.showSuggest)
   }
 
   arr: {};
@@ -433,7 +408,6 @@ export class AddorderComponent implements OnInit {
   form: FormGroup;
   params: FormGroup;
   cust: FormGroup;
-  cust1: FormGroup;
 
   // discount: FormGroup;
 
@@ -554,14 +528,6 @@ export class AddorderComponent implements OnInit {
       customeremail: ['']
     })
 
-    this.cust = _fb.group({
-
-      custmername: [''],
-      custmerphone: [''],
-
-      customeremail: ['']
-    })
-
 
 
   }
@@ -573,9 +539,9 @@ export class AddorderComponent implements OnInit {
 
   getBranch() {
     this.apiService.retriveData("/branchs/branch").then(bname => {
-      // console.log(bname)
+      console.log(bname)
       this.bname = bname
-      // console.log(this.bname)
+      console.log(this.bname)
     })
   }
   getspersonname() {
@@ -796,7 +762,6 @@ export class AddorderComponent implements OnInit {
       amount: [''],
       barcode: [''],
       product: [''],
-
       qty: [''],
       dis: [''],
       disrupe: [''],
