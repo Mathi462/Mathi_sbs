@@ -110,26 +110,26 @@ router.delete('/stock/:id', (req, res, next) => {
 
 // Update
 
-router.put('/all_in_one_stocks/:_id', (req, res, next) => {
-    if (!ObjectId.isValid(req.params._id))
-        return res.status(400).send(`No record with given id : ${req.params._id}`);
+// router.put('/all_in_one_stocks/:_id', (req, res, next) => {
+//     if (!ObjectId.isValid(req.params._id))
+//         return res.status(400).send(`No record with given id : ${req.params._id}`);
 
-    var newStock = {
-        // stockid:req.body.stockid,
-        stock_visiable: req.stock_visiable
-    };
-    Stock.findByIdAndUpdate(req.params._id, { $set: newStock }, { new: true }, (err, doc) => {
-        if (!err) {
-            //res.send(doc);
-            res.json({ success: true, msg: 'successfully  Updated Stock' });
-        }
-        else {
+//     var newStock = {
+//         // stockid:req.body.stockid,
+//         stock_visiable: req.stock_visiable
+//     };
+//     Stock.findByIdAndUpdate(req.params._id, { $set: newStock }, { new: true }, (err, doc) => {
+//         if (!err) {
+//             //res.send(doc);
+//             res.json({ success: true, msg: 'successfully  Updated Stock' });
+//         }
+//         else {
 
-            res.json({ success: false, msg: 'Failed to Update Stock' });
+//             res.json({ success: false, msg: 'Failed to Update Stock' });
 
-        }
-    });
-});
+//         }
+//     });
+// });
 
 
 // update visiblity
@@ -250,51 +250,64 @@ router.put('/updateBranch', (req, res, next) => {
 })
 
 
-router.put('/stock', (req, res, next) => {
-    console.log(req.body)
-    router.put('/stock/:_id', (req, res, next) => {
-        if (!ObjectId.isValid(req.params._id))
-            return res.status(400).send(`No record with given id : ${req.params._id}`);
+
+router.put('/all_in_one_stocks/:_id', (req, res, next) => {
+    if (!ObjectId.isValid(req.params._id))
+        return res.status(400).send(`No record with given id : ${req.params._id}`);
+        // var newStock = new Stock(
+        //     {
+        //         // stockid:req.body.stockid,
+        //         // model_name: req.body.model_name,
+        //         // brand_name: req.body.brand_name,
+        //         category_type: req.body.category_type,
+        //         ManufacturerName: req.body.ManufacturerName,
+        //         quantity: req.body.quantity,
+        //         dp: req.body.dp,
+        //         lp: req.body.lp,
+        //         sp: req.body.sp,
+        //         cp: req.body.cp,
+        //         stock_status: req.body.stock_status,
+        //         cgst: req.body.cgst,
+        //         sgst: req.body.sgst,
+        //         branch: req.body.branch,
+        //         remarks: req.body.remarks,
+        //         add_barcode: req.body.add_barcode,
+        //         battery_no: req.body.battery_no,
+        //         color: req.body.color,
+        //         stock_visible: req.body.stock_visiable,
+        //         imei1: req.body.imei1,
+        //         imei2: req.body.imei2,
+        //         otherno: req.body.otherno,
+        //         typeon: req.body.typeon,
+        //     }
+        // ) 
+            
+      
+            Stock.findByIdAndUpdate(req.params._id, { $set: req.body }, { new: true }, (err, doc) => {
+                if (!err) {
+                    //res.send(doc);
+                    res.json({ success: true, msg: doc });
+                }
+                else {
+        
+                    res.json({ success: false, msg: err });
+        
+                }
+            });
+    //     Stock.findByIdAndUpdate(req.params._id, { $set: newStock }, { new: true }, (err, doc) => {
+    //         if (!err) {
+    //             //res.send(doc);
+    //             res.json({ success: true, msg: 'successfully  Updated Stock' });
+    //         }
+    //         else {
     
-        var newStock = {
-            // stockid:req.body.stockid,
-            model_name: req.body.model_name,
-            brand_name: req.body.brand_name,
-            category_type: req.body.category_type,
-            ManufacturerName: req.body.ManufacturerName,
-            quantity: req.body.quantity,
-            dp: req.body.dp,
-            lp: req.body.lp,
-            sp: req.body.sp,
-            cp: req.body.cp,
-            stock_status: req.body.stock_status,
-            cgst: req.body.cgst,
-            sgst: req.body.sgst,
-            branch: req.body.branch,
-            remarks: req.body.remarks,
-            add_barcode: req.body.add_barcode,
-            battery_no: req.body.battery_no,
-            color: req.body.color,
-            stock_visible: req.body.stock_visiable,
-            imei1: req.body.imei1,
-            imei2: req.body.imei2,
-            otherno: req.body.otherno,
-            typeon: req.body.typeon,
-        };
-        Stock.findByIdAndUpdate(req.params._id, { $set: newStock }, { new: true }, (err, doc) => {
-            if (!err) {
-                //res.send(doc);
-                res.json({ success: true, msg: 'successfully  Updated Stock' });
-            }
-            else {
+    //             res.json({ success: false, msg: 'Failed to Update Stock' });
     
-                res.json({ success: false, msg: 'Failed to Update Stock' });
-    
-            }
-        });
+    //         }
+    //     });
     });
     
-})
+
 
 
 

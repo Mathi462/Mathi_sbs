@@ -19,7 +19,7 @@
           <mat-form-field>
             <mat-select style="color:black" placeholder="BRAND" formControlName="brand_name">
               <option selected>BRAND NAME</option>
-              <mat-option value="{{cat.BrandName}}" *ngFor="let cat of this.brand_name">
+              <mat-option value="{{cat._id}}" *ngFor="let cat of this.brand_name">
                 {{cat.BrandName}}
               </mat-option>
             </mat-select>
@@ -30,7 +30,7 @@
           <mat-form-field>
             <mat-select style="color:black" placeholder="MODEL NAME" formControlName="model_name">
               <option selected>MODEL NAME</option>
-              <mat-option value="{{cat.ModelName}}" *ngFor="let cat of this.model_name">
+              <mat-option value="{{cat._id}}" *ngFor="let cat of this.model_name">
                 {{cat.ModelName}}
               </mat-option>
             </mat-select>

@@ -384,7 +384,7 @@ console.log(this.toUpdate)
     // console.log(data) 
    
     console.log(this.update_id)
-    this.apiService.updateData('/all_in_one_stocks/stock/'+this.update_id,JSON.stringify(this.form.value) ).then(dataUpdate =>{
+    this.apiService.updateData('/all_in_one_stocks/all_in_one_stocks/'+this.update_id,this.form.value ).then(dataUpdate =>{
       this.pop.snakbar('Updated', 'Successfully');
       console.log(dataUpdate)
     });

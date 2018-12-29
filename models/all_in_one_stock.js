@@ -28,6 +28,7 @@ const AllinOneStockSchema = mongoose.Schema({
     imei2             : { type: String },
     otherno           : { type: String },    
     typeon            : { type: String },
+    
         
     
 

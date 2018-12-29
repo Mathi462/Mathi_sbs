@@ -72,7 +72,7 @@ export class BranchComponent implements OnInit {
     public formBuilder: FormBuilder) {
     this.showBranch();
     this.getshopowner();
-    
+
 
 
     this.image = formBuilder.group({
@@ -181,6 +181,7 @@ export class BranchComponent implements OnInit {
         pan_num: this.form.value.pan_num,
         phone1: this.form.value.phone1,
         phone2: this.form.value.phone2,
+   
 
         storename: 'null',
         firstname: 'null',
@@ -191,13 +192,10 @@ export class BranchComponent implements OnInit {
         user_type: 'branch'
       }
 
-      console.log(data);
 
 
       this.apiService.getDataImage("/all_login_users/imageupload", this.dataPassing).then(d => {
-        // console.log(d)
-       
-        
+
       }, err => {
         console.log(err)
       });
@@ -224,7 +222,7 @@ export class BranchComponent implements OnInit {
       });
 
       this.router.navigate(['/branch']);
-      
+
 
 
     }
@@ -277,10 +275,8 @@ export class BranchComponent implements OnInit {
       this.display = displayBranch;
       this.displayArray = []
       console.log(this.display);
-      for (let j = 0; j < this.display.length; j++)
-       {
-        if (this.display[j].user_type === 'branch') 
-        {
+      for (let j = 0; j < this.display.length; j++) {
+        if (this.display[j].user_type === 'branch') {
 
           this.displayArray.push(this.display[j])
           console.log(this.displayArray)
@@ -297,24 +293,24 @@ export class BranchComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  deleteBranch(value,event) {
+  deleteBranch(value, event) {
     console.log(value);
     this.apiService.deleteData('/all_login_users/adminregister/' + value._id).then(del => {
-      this.delete = del; 
+      this.delete = del;
       console.log(this.delete)
-     console.log(event)
-      this.dataSource.data.splice(event,1)
+      console.log(event)
+      this.dataSource.data.splice(event, 1)
       this.dataSource = new MatTableDataSource<Element>(this.dataSource.data);
       this.pop.snakbar('Branch Deleted', 'Successfully');
-     
-     
+
+
     });
     // this.showBranch();
-      this.router.navigate(['/branch']);
+    this.router.navigate(['/branch']);
 
   }
 
-  
+
 
 
 

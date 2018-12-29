@@ -48,10 +48,7 @@ router.post('/imageupload', (req, res, next) => {
 
 
   router.post('/adminregister', (req, res, next) => {
-
-    let newAdmin = new Admin
-    ({ 
-
+    let newAdmin = new Admin({ 
         storename       :   req.body.storename,
         username        :   req.body.username,
         email           :   req.body.email,
@@ -71,22 +68,13 @@ router.post('/imageupload', (req, res, next) => {
         phone2          :   req.body.phone2,
         user_type       :   req.body.user_type
     });
-   
-
     Admin.addAdmin(newAdmin, (err, admin) => { 
       if(err){
         res.json({success: false , msg:err });
-
-        
-
       } else {
         res.json({success: true , msg:'Admin registered'});
-
-       
-
       }
     });
-
   });
 
 
